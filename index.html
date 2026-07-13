@@ -99,10 +99,20 @@
   .hide{display:none !important}
 
   @media print{
-    .bar,.filters,footer .noprint{display:none}
-    body{background:#fff;padding:0}
-    .card,.tablewrap{box-shadow:none;break-inside:avoid}
-    label.item input:checked{background:#000;border-color:#000}
+    .noprint,.bar{display:none !important}
+    body{background:#fff;padding:0;color:#111}
+    header.hero{background:#fff;color:#111;border-bottom:2px solid #111;padding:4px 0 10px}
+    .hero p,.hero .cond{color:#333}
+    .hero .cond b{color:#000}
+    .card{box-shadow:none;border-color:#bbb;break-inside:auto;margin:8px 0}
+    .card > h3{background:#f0f0f0}
+    label.item{break-inside:avoid;padding:3px 6px}
+    label.item input{border-color:#111}
+    label.item input:checked{background:#111;border-color:#111}
+    /* пустой вариант: галочки не рисуем, зачёркивания нет */
+    body.print-blank label.item input:checked{background:#fff !important;border-color:#111 !important}
+    body.print-blank label.item input:checked::after{display:none !important}
+    body.print-blank label.item.done .txt{color:#111 !important;text-decoration:none !important}
   }
   @media (max-width:560px){
     .hero h1{font-size:22px}
@@ -136,7 +146,8 @@
       <button class="btn" data-f="bike">🚲 Вело</button>
     </div>
     <div class="filters">
-      <button class="btn ghost" id="print">Печать</button>
+      <button class="btn ghost" id="pdf-marked">PDF · с отметками</button>
+      <button class="btn ghost" id="pdf-blank">PDF · пустой</button>
       <button class="btn ghost" id="reset">Сброс</button>
     </div>
   </div>
@@ -145,8 +156,8 @@
 <main class="wrap">
 
   <section class="block">
-    <div class="note info">
-      Отмечай пункты галочкой — прогресс сохраняется в этом браузере. Фильтры <b>⛰️/🚲</b> показывают только нужное для гор или для вело. «Печать» даёт компактную версию на бумагу.
+    <div class="note info noprint">
+      Отмечай пункты галочкой — прогресс сохраняется в этом браузере. Фильтры <b>⛰️/🚲</b> показывают только нужное для гор или для вело. <b>PDF · с отметками</b> сохранит список в текущем виде, <b>PDF · пустой</b> — чистый бланк для заполнения от руки (в диалоге печати выбери «Сохранить как PDF»).
     </div>
   </section>
 
@@ -434,7 +445,18 @@
     btn.addEventListener('click',function(){ applyFilter(btn.getAttribute('data-f')); });
   });
 
-  document.getElementById('print').addEventListener('click',function(){ window.print(); });
+  function toPDF(blank){
+    var oldTitle=document.title;
+    document.title='Чеклист сборов — '+(blank?'пустой':'с отметками');
+    if(blank) document.body.classList.add('print-blank');
+    function restore(){ document.body.classList.remove('print-blank'); document.title=oldTitle; window.removeEventListener('afterprint',restore); }
+    window.addEventListener('afterprint',restore);
+    window.print();
+    // на случай, если afterprint не сработает (некоторые браузеры)
+    setTimeout(restore,1500);
+  }
+  document.getElementById('pdf-marked').addEventListener('click',function(){ toPDF(false); });
+  document.getElementById('pdf-blank').addEventListener('click',function(){ toPDF(true); });
   document.getElementById('reset').addEventListener('click',function(){
     if(!confirm('Снять все галочки?'))return;
     boxes.forEach(function(b){ b.checked=false; markItem(b); });
