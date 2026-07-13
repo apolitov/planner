@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Планер · Германия + Австрия — велопоход и хайки</title>
+<style>
+  :root{
+    --bg:#f4f6f4; --card:#ffffff; --ink:#1c2723; --muted:#5f6d66;
+    --line:#e4e8e4; --slate:#1e2a24; --mtn:#2f7d5b; --mtn-bg:#e6f2ea;
+    --bike:#c76a13; --bike-bg:#fdeddb; --accent:#2f7d5b;
+    --shadow:0 1px 2px rgba(20,40,30,.06),0 8px 24px rgba(20,40,30,.05);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding-bottom:64px}
+  a{color:var(--mtn)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+
+  /* Hero */
+  header.hero{background:linear-gradient(160deg,#24352c 0%,#1a2620 100%);color:#eaf1ec;
+    padding:34px 0 26px;border-bottom:3px solid var(--mtn)}
+  .hero h1{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;font-weight:700}
+  .hero p{margin:0;color:#b9c8bf;font-size:14.5px}
+  .hero .cond{margin-top:14px;font-size:14px;color:#cdd9d1}
+  .hero .cond b{color:#fff;font-weight:600}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;
+    font-size:12.5px;font-weight:600;white-space:nowrap}
+  .pill.mtn{background:var(--mtn-bg);color:#1d5a3f}
+  .pill.bike{background:var(--bike-bg);color:#8f4a08}
+
+  /* Sticky control bar */
+  .bar{position:sticky;top:0;z-index:20;background:rgba(244,246,244,.92);
+    backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+  .bar .inner{display:flex;align-items:center;gap:12px;padding:10px 0;flex-wrap:wrap}
+  .prog{flex:1;min-width:160px}
+  .prog .track{height:8px;background:#e2e7e3;border-radius:6px;overflow:hidden}
+  .prog .fill{height:100%;width:0;background:linear-gradient(90deg,var(--mtn),#4aa578);
+    border-radius:6px;transition:width .35s ease}
+  .prog .lbl{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .filters{display:flex;gap:6px}
+  .btn{border:1px solid var(--line);background:var(--card);color:var(--ink);
+    padding:6px 11px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600;
+    transition:.15s}
+  .btn:hover{border-color:#c9d2cb}
+  .btn.active{background:var(--slate);color:#fff;border-color:var(--slate)}
+  .btn.ghost{color:var(--muted);font-weight:500}
+
+  /* Callouts */
+  .note{margin:18px 0;padding:13px 15px;border-radius:10px;font-size:14px;border:1px solid}
+  .note.info{background:#eef4f8;border-color:#d4e3ee;color:#254a63}
+  .note.warn{background:#fdf3e7;border-color:#f2ddc0;color:#7a4d12}
+  .note b{font-weight:700}
+  .note ul{margin:6px 0 0;padding-left:18px}
+  .note li{margin:2px 0}
+
+  /* Plan table */
+  section.block{margin:24px 0}
+  h2.h{font-size:19px;margin:0 0 12px;display:flex;align-items:center;gap:8px;
+    letter-spacing:-.01em}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#eef1ee;font-weight:700;color:#31413a;position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  td.d{white-space:nowrap;font-weight:600;color:var(--mtn)}
+
+  /* Checklist cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+  .card > h3{margin:0;padding:13px 16px;font-size:16px;display:flex;align-items:center;
+    justify-content:space-between;gap:10px;cursor:pointer;user-select:none}
+  .card > h3 .cnt{font-size:12.5px;color:var(--muted);font-weight:600}
+  .card .body{padding:2px 16px 12px}
+  .grp{margin-top:10px}
+  .grp:first-child{margin-top:2px}
+  .grp h4{margin:8px 0 4px;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--muted);font-weight:700}
+  .subnote{font-size:12.5px;color:var(--muted);margin:2px 0 8px;font-style:italic}
+
+  label.item{display:flex;gap:11px;align-items:flex-start;padding:7px 8px;border-radius:9px;
+    cursor:pointer;transition:background .12s}
+  label.item:hover{background:#f4f7f4}
+  label.item input{appearance:none;-webkit-appearance:none;margin:2px 0 0;flex:none;
+    width:19px;height:19px;border:2px solid #c2ccc5;border-radius:6px;cursor:pointer;
+    position:relative;transition:.15s}
+  label.item input:checked{background:var(--mtn);border-color:var(--mtn)}
+  label.item input:checked::after{content:"";position:absolute;left:5px;top:1.5px;
+    width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(43deg)}
+  label.item .txt{flex:1}
+  label.item.done .txt{color:#9aa8a0;text-decoration:line-through;text-decoration-color:#c7d2cb}
+  .tag{font-size:12.5px;margin-left:5px}
+
+  footer{color:var(--muted);font-size:12.5px;text-align:center;margin:34px 0 10px}
+  .hide{display:none !important}
+
+  @media print{
+    .bar,.filters,footer .noprint{display:none}
+    body{background:#fff;padding:0}
+    .card,.tablewrap{box-shadow:none;break-inside:avoid}
+    label.item input:checked{background:#000;border-color:#000}
+  }
+  @media (max-width:560px){
+    .hero h1{font-size:22px}
+    h2.h{font-size:17px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>🚲🏔️ Германия + Австрия — велопоход и хайки</h1>
+    <p>Планер сборов и подготовки · ~2 недели · июль–август 2026</p>
+    <div class="cond">База в <b>кемпингах</b> · радиальные хайки в Австрии <b>до 3000 м</b> · велик (Trek Checkpoint SL7 AXS) + полный ремкомплект · <b>палатка не на мне</b>.</div>
+    <div class="legend">
+      <span class="pill mtn">⛰️ для гор (до 3000 м)</span>
+      <span class="pill bike">🚲 для вело</span>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap inner">
+    <div class="prog">
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <div class="lbl" id="plbl">0 из 0 собрано</div>
+    </div>
+    <div class="filters" role="group" aria-label="Фильтр">
+      <button class="btn active" data-f="" id="f-all">Всё</button>
+      <button class="btn" data-f="hike">⛰️ Горы</button>
+      <button class="btn" data-f="bike">🚲 Вело</button>
+    </div>
+    <div class="filters">
+      <button class="btn ghost" id="print">Печать</button>
+      <button class="btn ghost" id="reset">Сброс</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="block">
+    <div class="note info">
+      Отмечай пункты галочкой — прогресс сохраняется в этом браузере. Фильтры <b>⛰️/🚲</b> показывают только нужное для гор или для вело. «Печать» даёт компактную версию на бумагу.
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="block">
+    <h2 class="h">📅 Скелет плана</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дни</th><th>Что</th><th>Запас на погоду</th></tr></thead>
+        <tbody>
+          <tr><td class="d">1</td><td>Переезд, заселение на первой базе</td><td>—</td></tr>
+          <tr><td class="d">2–4</td><td>Акклиматизация: хайки полегче, вело-разведка</td><td>Лёгкий день у воды</td></tr>
+          <tr><td class="d">5–7</td><td>Ключевые радиалки на 3000 м ⛰️</td><td>Нижние тропы</td></tr>
+          <tr><td class="d">8</td><td>Переезд / днёвка / стирка</td><td>—</td></tr>
+          <tr><td class="d">9–12</td><td>Вело-дни + оставшиеся хайки</td><td>Музей / город в дождь</td></tr>
+          <tr><td class="d">13–14</td><td>Дорога домой</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note warn">
+      Хайки на 3000 м ставить на дни с хорошим прогнозом: в Альпах <b>грозы после полудня</b> — выходить рано, спускаться до грозы.
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="block" id="checklist">
+    <h2 class="h">🎒 Чеклист сборов</h2>
+
+    <div class="card" data-sec>
+      <h3>📄 Документы и деньги <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Паспорт</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">ВНЖ</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Водительские права</span></label>
+        <label class="item" data-tags="hike bike"><input type="checkbox"><span class="txt">Медстраховка — проверить покрытие <b>гор до 3000 м</b> ⛰️ и <b>велоспорта</b> 🚲 (часто исключены)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Платёжные карты (2 разные, на случай блокировки)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Наличка EUR (кемпинги, парковки, хижины часто <b>только кэш</b>; мелочь на душ)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Брони кемпингов (июль–август — высокий сезон)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Фото документов в облаке/офлайн</span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🔋 Электроника и навигация <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Телефон + зарядка</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Повербанк (розетка у места есть не всегда)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Кабели: USB-C + micro-USB, зарядный блок на несколько портов</span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Cycplus (насос) — заряд USB-C <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Garmin Varia (радар/задний фонарь) — micro-USB <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Garmin Edge 840 — USB-C <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Зарядка Garmin Fenix (свой кабель)</span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Налобник + запасные батарейки <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike bike"><input type="checkbox"><span class="txt">GPX-треки скачаны офлайн (Edge 840 / телефон) <span class="tag">⛰️🚲</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Офлайн-карты (Organic Maps / Google Maps)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Наушники</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">(опц.) Кемпинговый фонарь для стоянки</span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🏕️ Кемпинг / быт <span class="cnt"></span></h3>
+      <div class="body">
+        <p class="subnote">Готовка зависит от того, есть ли на кемпингах кухни/кафе — уточнить.</p>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Летние спальники</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Надувные коврики</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Вкладыши в спальник</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Подушка надувная / чехол под одежду</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Тапки/лёгкие кроссы для лагеря и <b>душа</b></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Кемпинговое полотенце (быстросохнущее, большое)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Пакеты для мусора / грязного / мокрого</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Нож</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">(опц.) Готовка: горелка + газ, котелок, кружка, приборы, губка, средство — <b>если не в кафе</b></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Стропа/резинки, стяжки, скотч/изолента</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Беруши + маска для сна</span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>👕 Одежда <span class="cnt"></span></h3>
+      <div class="body">
+        <p class="subnote">Комплекты в чередовании, стираем по ходу.</p>
+        <div class="grp"><h4>На себе в дорогу</h4>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Трекинговые штаны</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Футболка</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Трекинговые носки</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Трусы</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Кроссовки / повседневная обувь</span></label>
+        </div>
+        <div class="grp"><h4>Ходовая на хайк ⛰️</h4>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Трекинговые штаны (1–2)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Трекинговые шорты (1–2)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Футболки быстросохнущие (3–4)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Носки трекинговые (3–4 пары)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Трусы спортивные (4–5)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Кофта / флиска (средний слой)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Бафф / головной убор от солнца <span class="tag">⛰️</span></span></label>
+        </div>
+        <div class="grp"><h4>Высотный слой &gt;2000–3000 м ⛰️</h4>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt"><b>Лёгкий пуховик/синтепон</b> (холод выше 2000 м)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Куртка-дождевик / мембрана (ветро- и влагозащита)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Тонкая шапка + тонкие перчатки (на 3000 м бывает около нуля)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Термокофта/лонгслив (базовый слой)</span></label>
+          <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">(опц.) Гамаши/гетры, если ждём снежники</span></label>
+        </div>
+        <div class="grp"><h4>Велоодежда 🚲</h4>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Велошорты / велобиб (2, стирать через день) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Велоджерси / трекинговая футболка <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Велоперчатки <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Бафф/подшлемник <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">(опц.) Ветровка/дождевик компактный на спуски <span class="tag">🚲</span></span></label>
+        </div>
+        <div class="grp"><h4>Лагерь / вечер / сон</h4>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Свежая футболка на «второй день» + запас</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Домашние/лёгкие шорты для кемпинга</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Тёплая кофта на вечер</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Комплект для сна</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Тёплые носки на ночь</span></label>
+        </div>
+        <div class="grp"><h4>Купание · стирка</h4>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Плавки</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Очки для плавания</span></label>
+          <label class="item" data-tags=""><input type="checkbox"><span class="txt">Стиральный лист/капсулы или мыло-универсал</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>👟 Обувь <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Треккинговые ботинки (в чехле) — основная на хайки <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Тапки/лёгкие кроссы для лагеря и душа</span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Велообувь / под контакты (если в контактах) <span class="tag">🚲</span></span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>⛰️ Снаряжение для хайка <span class="cnt"></span></h3>
+      <div class="body">
+        <p class="subnote">Радиалка, день, до 3000 м.</p>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Трекинговые палки (в т.ч. вторая пара) <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Рюкзак дневной (20–30 л) + дождевой чехол <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Фляга / гидратор + <b>запас воды</b> <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Бутыль с фильтром <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Батончики / гели / орехи, соль-электролиты <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Солнечные очки (кат. 3, на снежниках кат. 4) <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Крем SPF50 + гигиеничка с SPF (UV на высоте жёстче) <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Спасодеяло <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Свисток <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Мини-аптечка в рюкзак <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Бумажная карта региона (бэкап к GPS) <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">(опц.) Микрошипы под снежники — <b>уточнить условия</b> <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">(опц.) Via ferrata (если маршрут требует) <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Дождевик/пончо <span class="tag">⛰️</span></span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🚲 Велоснаряжение и ремонт <span class="cnt"></span></h3>
+      <div class="body">
+        <div class="grp"><h4>Экипировка и подготовка байка</h4>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Шлем <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Велоочки <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Проверить давление в шинах <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Смазать цепь (Squirt/аналог) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Проверить тормоза, колодки, переключение <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Проверить люфты, затяжку, износ покрышек <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Зарядить Edge 840, Varia, фонари <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Зарядить <b>оба</b> аккумулятора SRAM AXS (перед + зад) + CR2032 в манетках <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Маршруты залиты в Edge 840, треки офлайн <span class="tag">🚲</span></span></label>
+        </div>
+        <div class="grp"><h4>Ремонт и запчасти</h4>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Насос (Cycplus) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Мультитул велосипедный <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Монтажки (2–3) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Герметик походный (компактный пузырёк) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Камера (1 шт., под свой размер/вентиль) <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">PowerLock / замок цепи <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Стяжки, изолента <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Замок велосипедный <span class="tag">🚲</span></span></label>
+          <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Спицы запасные под Aeolus Pro 3V (куплены) + ниппельный ключ <span class="tag">🚲</span></span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🩹 Аптечка <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Персональные лекарства (запас на всю поездку +)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Тейп + пластыри от мозолей (Compeed)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Обезболивающее / жаропонижающее</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">От ЖКТ, регидрон/электролиты</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Антигистамин</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Антисептик, бинт, лейкопластырь, ножнички</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Мазь от ушибов/растяжений, эластичный бинт</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">От солнечных ожогов (пантенол)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Средство от насекомых (репеллент)</span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">(опц.) От горняшки/головной боли на высоте <span class="tag">⛰️</span></span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🧴 Гигиена <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Щётка + паста</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Мыло / гель (универсал шампунь+гель)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Дезодорант</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Шейвер / бритьё</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Бальзам для губ</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Компактные полотешки (быстросохнущие)</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Влажные + сухие салфетки/бумага</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Санитайзер для рук</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Расчёска, ножнички, пилка</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Личное (по надобности)</span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>🍫 Питание и вода <span class="cnt"></span></h3>
+      <div class="body">
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Бидоны/фляги (2) для велика <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Бортовая еда: гели, батончики, орехи</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Электролиты/изотоник</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Термокружка/бутылка</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Перекус на первый перегон/первый хайк</span></label>
+      </div>
+    </div>
+
+    <div class="card" data-sec>
+      <h3>✅ Пред-выездные задачи <span class="cnt"></span></h3>
+      <div class="body">
+        <p class="subnote">За 1–3 дня до выезда.</p>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Погода + <b>гроза после полудня</b> → выходить рано <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike"><input type="checkbox"><span class="txt">Снежная обстановка / состояние троп на 3000 м <span class="tag">⛰️</span></span></label>
+        <label class="item" data-tags="hike bike"><input type="checkbox"><span class="txt">Скачать офлайн-карты + GPX всех хайков и вело-треков <span class="tag">⛰️🚲</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Забронировать/подтвердить кемпинги на первые ночи</span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">Зарядить всё: телефон, повербанк, Edge 840, Varia, Fenix, Cycplus, оба AXS, фонари, налобник <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags="bike"><input type="checkbox"><span class="txt">ТО байка (цепь/тормоза/давление) за день до выезда <span class="tag">🚲</span></span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Собрать аптечку, проверить сроки годности</span></label>
+        <label class="item" data-tags=""><input type="checkbox"><span class="txt">Фото документов в облако, маршрут — близким</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARNINGS -->
+  <section class="block">
+    <h2 class="h">⚠️ Ключевое по безопасности</h2>
+    <div class="note warn">
+      <b>Высота 3000 м.</b> Даже летом бывает около нуля, ветер, снежники. Тёплый + ветрозащитный слой обязателен; солнце жёсткое — очки кат. 3–4, SPF50.
+    </div>
+    <div class="note warn">
+      <b>Погода.</b> Гроза во второй половине дня — планировать ранний выход и ранний спуск.
+    </div>
+    <div class="note info">
+      <b>Страховка.</b> Убедиться, что покрывает <b>горы до 3000 м</b> и <b>велоспорт</b> — часто в исключениях.
+    </div>
+    <div class="note info">
+      <b>Экстренные номера.</b> 140 — горноспасатели Австрия · 112 — общий по ЕС.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="noprint">Личный планер · собран в Claude Code · прогресс хранится локально в браузере</div>
+</footer>
+
+<script>
+(function(){
+  var KEY='planner-de-at-2026-v1';
+  var boxes=[].slice.call(document.querySelectorAll('.item input'));
+  var saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ saved={}; }
+
+  function save(){
+    var o={}; boxes.forEach(function(b,i){ if(b.checked)o[i]=1; });
+    try{ localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){}
+  }
+  function markItem(b){ b.closest('.item').classList.toggle('done',b.checked); }
+  function progress(){
+    var vis=boxes.filter(function(b){ return b.closest('.item').offsetParent!==null || !b.closest('.item').classList.contains('hide'); });
+    // overall counts (all items, not just visible)
+    var total=boxes.length, done=boxes.filter(function(b){return b.checked;}).length;
+    document.getElementById('fill').style.width=(total?Math.round(done/total*100):0)+'%';
+    document.getElementById('plbl').textContent=done+' из '+total+' собрано';
+    // per-section counts
+    document.querySelectorAll('.card[data-sec]').forEach(function(sec){
+      var bs=[].slice.call(sec.querySelectorAll('.item input'));
+      var d=bs.filter(function(b){return b.checked;}).length;
+      var c=sec.querySelector('.cnt'); if(c) c.textContent=d+'/'+bs.length;
+    });
+  }
+
+  boxes.forEach(function(b,i){
+    b.checked=!!saved[i]; markItem(b);
+    b.addEventListener('change',function(){ markItem(b); save(); progress(); });
+  });
+
+  // filters
+  var curF='';
+  function applyFilter(f){
+    curF=f;
+    document.querySelectorAll('.filters .btn[data-f]').forEach(function(btn){
+      btn.classList.toggle('active',btn.getAttribute('data-f')===f);
+    });
+    document.querySelectorAll('.item').forEach(function(el){
+      var tags=(el.getAttribute('data-tags')||'').split(' ');
+      var show=!f||tags.indexOf(f)>-1;
+      el.classList.toggle('hide',!show);
+    });
+    // hide empty groups
+    document.querySelectorAll('.grp').forEach(function(g){
+      var any=[].slice.call(g.querySelectorAll('.item')).some(function(el){return !el.classList.contains('hide');});
+      g.classList.toggle('hide',!any);
+    });
+    // hide empty cards
+    document.querySelectorAll('.card[data-sec]').forEach(function(sec){
+      var any=[].slice.call(sec.querySelectorAll('.item')).some(function(el){return !el.classList.contains('hide');});
+      sec.classList.toggle('hide',!any);
+    });
+  }
+  document.querySelectorAll('.filters .btn[data-f]').forEach(function(btn){
+    btn.addEventListener('click',function(){ applyFilter(btn.getAttribute('data-f')); });
+  });
+
+  document.getElementById('print').addEventListener('click',function(){ window.print(); });
+  document.getElementById('reset').addEventListener('click',function(){
+    if(!confirm('Снять все галочки?'))return;
+    boxes.forEach(function(b){ b.checked=false; markItem(b); });
+    save(); progress();
+  });
+
+  progress();
+})();
+</script>
+</body>
+</html>
