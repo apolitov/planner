@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finis Terrae — Северная Испания, 18–22.08.2026</title>
+<meta name="description" content="Путеводитель по автотрипу: Сантьяго — Коста-да-Морте — А-Корунья — Катедралес — Овьедо — Леон">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F3; --card:#FFFFFF; --ink:#1C2321; --muted:#66716D;
+  --sea:#0B5D66; --sea-soft:#0b5d661a; --cider:#B96F1E; --cider-soft:#b96f1e14;
+  --line:#D8DEDC; --dash:#B9C2BF;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#14181A; --card:#1C2224; --ink:#E8ECEA; --muted:#93A09B;
+    --sea:#5BBAC2; --sea-soft:#5bbac21f; --cider:#E09A4C; --cider-soft:#e09a4c1f;
+    --line:#2B3336; --dash:#3C4649;
+  }
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+img{max-width:100%;display:block}
+a{color:var(--sea)}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+.wide{max-width:920px;margin:0 auto}
+
+/* ---------- display type ---------- */
+h1,h2,h3,.disp{font-family:"Forum",Georgia,serif;font-weight:400;line-height:1.12;letter-spacing:.015em}
+h3{font-size:1.9rem;margin:0 0 .35rem}
+.mono{font-family:"IBM Plex Mono",monospace}
+
+/* ---------- cover ---------- */
+.cover{position:relative;min-height:92svh;display:flex;align-items:flex-end;color:#F4F6F5;overflow:hidden}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0006 0%,#0000 35%,#000a 78%,#000c 100%)}
+.cover .wrap{position:relative;z-index:2;padding-bottom:3.2rem;width:100%}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+.cover h1{font-size:clamp(3rem,11vw,5.6rem);margin:.4rem 0 .7rem;text-transform:uppercase}
+.cover .route{font-size:.95rem;opacity:.92;max-width:34em}
+.cover .route b{font-weight:600}
+.cover figcaption{position:absolute;right:12px;bottom:8px;z-index:2;font-size:.62rem;opacity:.55;font-family:"IBM Plex Mono",monospace}
+.cover figcaption a{color:inherit}
+
+/* ---------- sticky day nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .in{display:flex;gap:4px;overflow-x:auto;padding:9px 14px;scrollbar-width:none;max-width:920px;margin:0 auto}
+nav .in::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.04em;text-decoration:none;color:var(--muted);padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+nav a b{color:var(--ink);font-weight:500}
+nav a.book{border-color:var(--cider);color:var(--cider)}
+
+/* ---------- day header: km-post ---------- */
+.day{padding:4.4rem 0 1.6rem}
+.day .num{font-family:"Forum",serif;font-size:1.05rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sea)}
+.day h2{font-size:clamp(2.1rem,6.5vw,3.1rem);margin:.25rem 0 .8rem}
+.kmpost{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted)}
+.kmpost b{color:var(--ink);font-weight:500}
+.road{border:none;border-top:2px dashed var(--dash);margin:1.5rem 0 0}
+
+/* ---------- location ---------- */
+section.loc{padding:2.6rem 0 1rem}
+figure.full{margin:0 0 1.5rem}
+figure.full img{width:100%;max-height:62svh;object-fit:cover;border-radius:2px}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);padding:6px 20px 0;max-width:920px;margin:0 auto}
+figcaption a{color:var(--muted)}
+.lede{font-size:1.06rem;margin:.2rem 0 1rem;color:var(--muted)}
+.loc p{margin:0 0 1rem}
+h4{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);margin:1.6rem 0 .7rem}
+ul.see{list-style:none;padding:0;margin:0 0 1.2rem}
+ul.see li{padding:.42rem 0 .42rem 1.35rem;position:relative;border-bottom:1px solid var(--line)}
+ul.see li::before{content:"›";position:absolute;left:.15rem;color:var(--sea);font-weight:600}
+ul.see b{font-weight:600}
+.prac{background:var(--cider-soft);border-left:3px solid var(--cider);border-radius:0 4px 4px 0;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
+.prac .t{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cider);margin-bottom:.4rem}
+.prac ul{list-style:none;padding:0}
+.prac li{padding:.18rem 0}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.4rem 0 .6rem}
+.gal figure{margin:0}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.gal figcaption{padding:4px 2px 0}
+@media(max-width:560px){.gal{grid-template-columns:1fr}}
+
+/* ---------- tide bar ---------- */
+.tide{margin:1.2rem 0;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1rem 1.1rem}
+.tide .t{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);margin-bottom:.7rem}
+.tidebar{position:relative;height:34px;background:linear-gradient(90deg,var(--sea-soft),transparent 18%,transparent 82%,var(--sea-soft));border-radius:4px;border:1px solid var(--line)}
+.tidebar .win{position:absolute;top:0;bottom:0;left:32%;right:22%;background:var(--sea-soft);border-left:2px solid var(--sea);border-right:2px solid var(--sea)}
+.tidebar .low{position:absolute;top:-7px;bottom:-7px;left:55%;width:2px;background:var(--cider)}
+.tidescale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.45rem}
+.tide .cap{font-size:.83rem;color:var(--muted);margin-top:.6rem}
+
+/* ---------- final / footer ---------- */
+.fin{background:var(--card);border-top:1px solid var(--line);margin-top:3.5rem;padding:3rem 0 2rem}
+.fin h2{font-size:2rem;margin-bottom:1rem}
+.check{list-style:none;padding:0;margin:0 0 2rem}
+.check li{padding:.5rem 0 .5rem 2rem;position:relative;border-bottom:1px solid var(--line)}
+.check li::before{content:"";position:absolute;left:.1rem;top:.72rem;width:15px;height:15px;border:2px solid var(--cider);border-radius:3px}
+.small{font-size:.82rem;color:var(--muted)}
+.small li{padding:.15rem 0}
+footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <img src="img/praia-das-catedrais/catedrais-big-arch.jpg" alt="Арка Прайя-де-лас-Катедралес" fetchpriority="high">
+  <div class="wrap">
+    <div class="kicker">Роудбук · 18–22 августа 2026 · 1 930 км</div>
+    <h1>Finis Terrae</h1>
+    <p class="route">Лиссабон → <b>Сантьяго-де-Компостела</b> → Коста-да-Морте → <b>А-Корунья</b> → Прайя-де-лас-Катедралес → Кудильеро → <b>Овьедо</b> → Леон → домой.<br>Природа · арт · старина.</p>
+  </div>
+  <figcaption>Фото: P. M. Martínez Corada · <a href="https://commons.wikimedia.org/wiki/File:Playa-catedrales-arco.jpg">CC BY-SA 3.0 es</a></figcaption>
+</header>
+
+<nav><div class="in">
+  <a href="#d0"><b>Вт</b> дорога</a>
+  <a href="#d1"><b>Ср</b> Сантьяго</a>
+  <a href="#d2"><b>Чт</b> край земли</a>
+  <a href="#d3"><b>Пт</b> берег</a>
+  <a href="#d4"><b>Сб</b> Овьедо → дом</a>
+  <a class="book" href="#fin">✓ брони</a>
+</div></nav>
+
+<!-- ============ DAY 0 ============ -->
+<div class="wrap day" id="d0">
+  <div class="num">День 0 · Вторник 18.08</div>
+  <h2>Ночной перегон</h2>
+  <div class="kmpost"><span><b>610 км</b> · ~6 ч</span><span>A1 → Порту → A3 → AP-9</span><span>в Сантьяго <b>~01:00</b></span></div>
+  <hr class="road">
+</div>
+
+<section class="loc"><div class="wrap">
+  <h3>Лиссабон → Сантьяго</h3>
+  <p class="lede">Выезд в 18:00–19:00, ужин по дороге. На границе часы переводятся на час вперёд.</p>
+  <p>Платники: A3 в Португалии, AP-9 в Галисии. Граница — мост через Миньо у Валенсы, дальше час двадцать до Сантьяго. Отель предупредить о позднем заезде.</p>
+  <h4>Опция: разминка в полночь</h4>
+  <p>Крепость <b>Валенса-ду-Минью</b> — прямо у съезда с трассы, открыта всегда и бесплатно, ночью подсвечена. Двойная звезда по системе Вобана, перестроена в 1661–1713 после восстановления независимости Португалии, периметр стен ~5 км — одна из крупнейших бастионных крепостей Европы. Двадцать минут по стенам — и дальше. Через реку — огни <b>Туя</b>: собор-крепость освящён в 1225-м, его портал считается первой готической скульптурой Иберии. Рассмотрим с испанского берега в другой раз — а Международный мост 1886 года проедем прямо по нижнему ярусу (легенда приписывает его Эйфелю, на деле — инженер Пелайо Мансебо).</p>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/valenca-tui/valenca-fort.jpg" alt="Крепость Валенса на закате"><figcaption>Бастионы Валенсы · Contando Estrelas · <a href="https://commons.wikimedia.org/wiki/File:Fortaleza_de_Valen%C3%A7a_(3870157087).jpg">CC BY-SA 2.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/valenca-tui/tui-mino.jpg" alt="Туй над рекой Миньо"><figcaption>Туй над Миньо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:El_r%C3%ADo_Mi%C3%B1o_a_su_paso_por_la_Catedral_de_Tuy.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  </div>
+</div></section>
+
+<!-- ============ DAY 1 ============ -->
+<div class="wrap day" id="d1">
+  <div class="num">День 1 · Среда 19.08</div>
+  <h2>Сантьяго-де-Компостела</h2>
+  <div class="kmpost"><span><b>0 км</b> — весь день пешком</span><span>старый город = ЮНЕСКО (1985)</span></div>
+  <hr class="road">
+</div>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/santiago/obradoiro-panorama.jpg" alt="Площадь Обрадойро с высоты">
+  <figcaption>Обрадойро с высоты парадора · A. Gonzalez Alameda · <a href="https://commons.wikimedia.org/wiki/File:Parador_de_Santiago_-_Plaza_del_Obradoiro_desde_la_Suite_Real.jpg">CC BY-SA 3.0 es</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Собор и Портик Славы</h3>
+  <p class="lede">Город начался около 820 года: отшельник увидел свечение над римским некрополем, епископ объявил гробницу могилой апостола Иакова — и сюда пошла вся Европа.</p>
+  <p>Нынешний романский собор заложен в 1075-м, освящён в 1211-м. <b>Портик Славы</b> — вершина романской скульптуры: мастер Матео, 1168–1188, около 200 фигур — Христос во славе, 24 старца Апокалипсиса с музыкальными инструментами, улыбающийся пророк Даниил. Десятилетняя реставрация (2008–2018) раскрыла остатки красок XII века — теперь портик показывают только по сеансам, 25 минут, без фото.</p>
+  <p>Барочный фасад Обрадойро (1738–1749) пристроили именно чтобы укрыть портик от атлантической непогоды. Знаменитый <b>ботафумейро</b> — кадило на 62 кг, которое восемь служителей раскачивают до 68 км/ч — летает лишь по большим праздникам или по заказу (~500 €); попасть «случайно» почти нереально.</p>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Обрадойро</b> — фасад, парадор Королей-Католиков (1501, госпиталь паломников), плита «км 0» всех Камино</li>
+    <li><b>Портик Славы</b> — сеанс по билету; искать автопортрет Матео с обратной стороны — «santo dos croques», о лоб которого студенты «набирались ума»</li>
+    <li><b>Крипта с гробницей апостола</b> и объятие статуи Сантьяго за алтарём — бесплатная часть собора</li>
+    <li><b>Пласа-де-Пратериас</b> — единственный уцелевший романский фасад (~1103–1117)</li>
+    <li><b>Пласа-да-Кинтана</b> — Порта-Санта (откроется в Святой 2027-й); вечером здесь лучшая подсветка</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>❗ Портик Славы — только по билету, 15 €, сеансы разбирают: <b>visitas.catedraldesantiago.es</b></li>
+    <li>Собор — бесплатно, ~9:00–20:00 (в мессы туристический вход ограничен)</li>
+    <li>Парковка — Xoán XXIII, дальше город только пешком</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/santiago/portico-pantocrator.jpg" alt="Пантократор Портика Славы"><figcaption>Христос во славе, тимпан · pedronchi · <a href="https://commons.wikimedia.org/wiki/File:Pantocrator_del_p%C3%B3rtico_de_la_Gloria_en_Santiago_de_Compostela.jpg">CC BY 2.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/santiago/portico-gloria.jpg" alt="Старцы Апокалипсиса"><figcaption>Старцы с инструментами · P.Lameiro · <a href="https://commons.wikimedia.org/wiki/File:Portico_da_Gloria_11-15.JPG">CC BY-SA 4.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/santiago/mercado-abastos.jpg" alt="Меркадо-де-Абастос">
+  <figcaption>Гранитные нефы рынка · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:2026._Mercado_de_Abastos_de_Santiago_de_Compostela._Galiza.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Город и рынок</h3>
+  <p class="lede">Меркадо-де-Абастос — второе по посещаемости место города после собора: рынок здесь с 1870-х, гранитные нефы — 1941 год.</p>
+  <p>Осьминог, перцы падрон, сыр тетилья, устрицы; в пятом нефе — бары, где за ~5 € приготовят купленное тобой. Идти до 13:00, пока рынок живой. Ужин — Rúa do Franco и Rúa da Raíña: пульпо-а-фейра, тарта-де-Сантьяго, альбариньо.</p>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Рынок</b> — утро буднего дня, обед в 5-м нефе</li>
+    <li><b>Парк Аламеда</b> — открыточный вид на собор на закате</li>
+    <li>Вечерний круг: Кинтана → Пратериас → Обрадойро в подсветке</li>
+  </ul>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/santiago/cgac.jpg" alt="CGAC Алвару Сизы">
+  <figcaption>CGAC, Алвару Сиза (1993) · MarcosEire · <a href="https://commons.wikimedia.org/wiki/File:CGAC_Santiago_de_Compostela.jpg">CC BY 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>CGAC и Бонаваль</h3>
+  <p class="lede">Арт-блок дня: гранитный модернизм Сизы дверь в дверь с монастырём XIII века — и парк на месте старого кладбища между ними.</p>
+  <p><b>CGAC</b> — Галисийский центр современного искусства (1993): Алвару Сиза одел модернистский объём в тот же гранит, что и старый город; внутри — знаменитая игра света в атриуме, на крыше — терраса с видом на Бонаваль. <b>Museo do Pobo Galego</b> в монастыре Сан-Домингос-де-Бонаваль — галисийская народная культура: лодки, ремёсла, волынки-гайты, а главное — <b>тройная винтовая лестница</b> Доминго де Андраде (конец XVII в.): три независимые спирали в одной башне, каждая ведёт на свой этаж. В церкви — пантеон знаменитых галисийцев, включая поэтессу Росалию де Кастро.</p>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>CGAC: вт–вс 11:00–20:00, <b>бесплатно</b></li>
+    <li>Pobo Galego: вт–сб 11:00–18:00, 5 €</li>
+    <li>Парк Бонаваль (Сиза, 1994) — между ними, на закате отсюда весь город</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/santiago/bonaval-staircase.jpg" alt="Тройная винтовая лестница"><figcaption>Тройная спираль Андраде · J. L. Cernadas Iglesias · <a href="https://commons.wikimedia.org/wiki/File:Escaleira_tripla_de_caracol_(Compostela).jpg">CC BY 2.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/santiago/bonaval-church.jpg" alt="Сан-Домингос-де-Бонаваль"><figcaption>Сан-Домингос-де-Бонаваль · Bene Riobó · <a href="https://commons.wikimedia.org/wiki/File:Igrexa_de_San_Domingos_de_Bonaval_01.jpg">CC0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<div class="wrap day" id="d2">
+  <div class="num">День 2 · Четверг 20.08</div>
+  <h2>Коста-да-Морте: на край земли</h2>
+  <div class="kmpost"><span><b>235 км</b> · ~3,5 ч руля</span><span>Сантьяго → Эсаро → Фистерра → А-Корунья</span></div>
+  <hr class="road">
+</div>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/ezaro/fervenza-1.jpg" alt="Водопад Эсаро">
+  <figcaption>Шальяс падает в океан · Basotxerri · <a href="https://commons.wikimedia.org/wiki/File:%C3%89zaro_-_Cascada_-BT-_02.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Фервенса-де-Эсаро</h3>
+  <p class="lede">Река Шальяс срывается с гранита ~40 м прямо в бухту Атлантики — считается единственным таким устьем-водопадом в континентальной Европе.</p>
+  <p>У водопада драматичная биография: в 1986-м плотина ГЭС «выключила» его полностью — вся вода ушла в трубы. После кампании местных с 2000 года воду вернули по расписанию, а с 2011-го — насовсем. Над бухтой — гора Пиндо (627 м), «кельтский Олимп» из розового гранита, на закате горит красным.</p>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Мостки к водопаду</b> — 10 минут от парковки, площадки прямо у воды</li>
+    <li><b>Mirador de Ézaro</b> — серпантин на скалу: устье, океан, Пиндо и Фистерра на горизонте. Один из главных видов Галисии</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Бесплатно, круглосуточно; от Сантьяго ~1 ч 15 по AC-550 вдоль океана</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/ezaro/mirador.jpg" alt="Вид с мирадора Эсаро"><figcaption>Вид с мирадора · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Mirador_de_%C3%89zaro,_Dumbr%C3%ADa_(5164940908).jpg">CC BY 2.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/ezaro/fervenza-2.jpg" alt="Водопад после дождей"><figcaption>После дождей · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Fervenza_de_%C3%89zaro,_Dumbr%C3%ADa_(5164986758).jpg">CC BY 2.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/fisterra/cape-coast.jpg" alt="Панорама с мыса Фистерра">
+  <figcaption>Панорама с мыса · Xosema · <a href="https://commons.wikimedia.org/wiki/File:Fisterra_-_Panoramica_desde_cabo_Fisterra_-_01.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Мыс Фистерра</h3>
+  <p class="lede">Finis Terrae — «край земли»: дальше на запад римский мир кончался. Здесь же кончается Камино — от Сантьяго сюда идут ещё 89 км, у маяка стоит столбик «K.M. 0,000».</p>
+  <p>Античные авторы помещали на мысу Ара-Солис — алтарь Солнца; вершина над ним так и зовётся Монте-Фачо, «гора сигнального костра». Маяк — 1853 год, инженер Фелиш Уагон: башня всего 17 м, но огонь стоит на 143 м над водой и виден за 23 мили. С 1888-го в туманы ревёт сирена — «корова Фистерры». Воды вокруг — «Берег смерти», названный за сотни кораблекрушений.</p>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Маяк и «км 0»</b> — финал Камино; на камнях ниже площадки — бронзовый ботинок паломника</li>
+    <li><b>Монте-Фачо</b> — тропа от маяка на вершину (242 м, ~30 мин), место Ара-Солис</li>
+    <li><b>Санта-Мария-дас-Ареас</b> (XII–XV вв.) по дороге к маяку — готический Святой Христос</li>
+    <li><b>Мар-де-Фора</b> — дикий океанский пляж за перешейком: смотреть обязательно, купаться опасно</li>
+    <li>Порт — перкебес (морские уточки) в барах у лонхи</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Бесплатно; парковка у маяка маленькая — либо заранее, либо ниже и 10 мин пешком</li>
+    <li>Обед — рыбные рестораны у порта</li>
+    <li>До Коруньи ~115 км, выезжать так, чтобы к вечеру быть на набережной</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/fisterra/faro.jpg" alt="Маяк Фистерры"><figcaption>Маяк 1853 года · Basotxerri · <a href="https://commons.wikimedia.org/wiki/File:Cabo_de_Fisterra_-_Faro_-BT-_01.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/fisterra/faro-peregrinos.jpg" alt="Паломники у маяка"><figcaption>Паломники у маяка · <a href="https://commons.wikimedia.org/wiki/File:Faro_de_Fisterra_-_Faro_de_Finisterre_img_n01_e_peregrinos.jpg">CC0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/a-coruna-city/marina-galleries-panorama.jpg" alt="Галереи Марины">
+  <figcaption>Авенида-да-Марина · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:Avenida_de_La_Marina_(La_Coru%C3%B1a).jpg">CC BY-SA 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Вечер: А-Корунья, «город стекла»</h3>
+  <p class="lede">Тыльные фасады домов у гавани в XIX веке зашили белыми остеклёнными галереями по технологии корабельных плотников — от ветра и ради солнечного тепла. «Изнанка» стала парадным морским фасадом.</p>
+  <p>Главный сюжет старого города — оборона 1589 года: через год после гибели Непобедимой армады сюда пришла английская «контр-армада» Дрейка. Когда англичане пробили стену, горожанка <b>Мария Пита</b>, потеряв мужа в бою, убила знаменосца с кличем «У кого есть честь — за мной!» — штурм захлебнулся. Её площадь — парадный зал города: аркады, ратуша с тремя куполами (1917), бронзовая Мария с копьём.</p>
+  <h4>Вечерний круг</h4>
+  <ul class="see">
+    <li><b>Площадь Марии Питы</b> — ужин под аркадами</li>
+    <li><b>Галереи Марины</b> — вдоль всей набережной</li>
+    <li>Сидаде-Велья: романская церковь Сантьяго (XII в.), тихие площади Азкаррага и Фариня</li>
+  </ul>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/a-coruna-city/maria-pita-square.jpg" alt="Площадь Марии Питы"><figcaption>Пласа-де-Мария-Пита · Diego Delso · <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Mar%C3%ADa_Pita,_La_Coru%C3%B1a,_Espa%C3%B1a,_2015-09-25,_DD_91.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/a-coruna-city/marina-galleries-closeup.jpg" alt="Галереи крупно"><figcaption>Галереи, деталь · kdperico · <a href="https://commons.wikimedia.org/wiki/File:Galer%C3%ADas_A_Marina,_A_Coru%C3%B1a.jpg">CC BY-SA 2.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<div class="wrap day" id="d3">
+  <div class="num">День 3 · Пятница 21.08</div>
+  <h2>Римский маяк и каменные соборы</h2>
+  <div class="kmpost"><span><b>305 км</b> · ~3,5 ч руля</span><span>А-Корунья → Рибадео → Кудильеро → Овьедо</span><span>отлив <b>17:56</b></span></div>
+  <hr class="road">
+</div>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/tower-of-hercules/tower-hercules-headland.jpg" alt="Башня Геркулеса">
+  <figcaption>Башня Геркулеса на мысу · Diego Delso · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules,_La_Coru%C3%B1a,_Espa%C3%B1a,_2015-09-25,_DD_35-37_HDR.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Башня Геркулеса</h3>
+  <p class="lede">Древнейший действующий маяк мира: римляне зажгли здесь огонь при Траяне, на рубеже I–II веков, — и он горит до сих пор. ЮНЕСКО с 2009 года.</p>
+  <p>У подножия — закладной камень с посвящением Марсу и подписью архитектора: Гай Севий Луп из Аэминия (нынешняя Коимбра). Римское ядро в 34 м обвивала наружная рампа для подъёма топлива; в 1788–1791 инженер Эустакио Джаннини «одел» его в неоклассический гранитный футляр и надстроил ярус — вышло 55 м. По легенде, под башней Геркулес зарыл голову великана Гериона — сюжет с герба города; кельтский король Бреоган, по ирландской «Книге захватов», разглядел отсюда Ирландию.</p>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Подъём</b> — 234 ступени внутри римской кладки, наверху океан на все стороны</li>
+    <li><b>Скульптурный парк на мысу</b> — колоссальный Бреоган, «Менгиры за мир», «Роза ветров» с символами кельтских народов</li>
+    <li>Тропы вдоль обрывов — вид на башню с севера</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>10:00–21:00 летом, 3 €; запускают группами по 15 минут, утром очередь меньше</li>
+    <li>⚠ Casa Museo Picasso (семья жила тут в 1891–1895, юный Пабло впервые выставился) — возможно, ещё закрыт на реконструкцию, проверить на coruna.gal</li>
+    <li>~14:00 — выезд на восток, обед в Рибадео (155 км, 1:40)</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/tower-of-hercules/tower-hercules-sunset.jpg" alt="Башня на закате"><figcaption>El fosilmaníaco · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules_atardecer.JPG">CC BY-SA 3.0 es</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/tower-of-hercules/tower-hercules-coast.jpg" alt="Башня с побережья"><figcaption>L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules_-_DivesGallaecia2012-3.jpg">CC BY-SA 3.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/praia-das-catedrais/catedrais-arches-04.jpg" alt="Арки Катедралес">
+  <figcaption>Аркады «соборов» · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-04.jpg">CC BY-SA 3.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Прайя-де-лас-Катедралес</h3>
+  <p class="lede">Официально — «пляж Святых вод». Море за тысячи лет прогрызло в вертикальных пластах сланца аркады до 30 м — в отлив они читаются как контрфорсы готического собора.</p>
+  <p>Природный памятник Галисии с 2005 года; из-за наплыва (в пик — 10 000+ человек в день) летом пускают по бесплатным именным пропускам.</p>
+  <div class="tide">
+    <div class="t">Прилив · пятница 21.08</div>
+    <div class="tidebar"><div class="win"></div><div class="low"></div></div>
+    <div class="tidescale"><span>14:00</span><span>16:30</span><span>отлив 17:56</span><span>19:30</span><span>21:00</span></div>
+    <p class="cap">Окно на песке — <b>16:30–19:30</b>. Коэффициент низкий (29): вода уйдёт недалеко, главные арки доступны, дальние гроты могут остаться в воде. Прилив здесь быстрый — на растущей воде в гроты не заходить.</p>
+  </div>
+  <h4>Что смотреть</h4>
+  <ul class="see">
+    <li><b>Большая арка</b> и цепочка малых в западной части — под ними проходишь по песку</li>
+    <li><b>Гроты и коридоры</b> с цветными слоями сланца — фонарик в телефоне</li>
+    <li><b>Смотровая на обрыве</b> — масштаб понятен сверху, работает и в прилив</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>❗ Пропуск: <b>ascatedrais.xunta.gal</b> — бесплатно, PDF/QR + документ при спуске</li>
+    <li>Съезд с A-8 у Rinlo; парковка, кафе и туалеты на месте</li>
+    <li>Запасной план без пропуска — соседний пляж Эстейро, те же скалы без толпы</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/praia-das-catedrais/catedrais-arches-19.jpg" alt="Арки в отлив"><figcaption>L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-19.jpg">CC BY-SA 3.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/praia-das-catedrais/catedrais-cave.jpg" alt="Грот в сланцах"><figcaption>Грот в сланцах · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Cova_e_xistos_na_praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-13.jpg">CC BY-SA 3.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/cudillero/cudillero-amphitheatre.jpg" alt="Кудильеро">
+  <figcaption>Амфитеатр Кудильеро · Lourdes Cardenal · <a href="https://commons.wikimedia.org/wiki/File:Asturias_Cudillero_Vista_general_lou.jpg">CC BY-SA 3.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Кудильеро на закате</h3>
+  <p class="lede">Рыбацкий посёлок-амфитеатр: цветные дома ярусами по стенам ущелья, сходящегося к крошечной гавани. Первое упоминание — купчая 1285 года; легенда упрямо приписывает основание викингам.</p>
+  <p>Изоляция породила собственный диалект — пишуэто, на котором говорят только здесь. Каждый год 29 июня с лодки в гавани нараспев читают ироничную «проповедь»-хронику года — Л'Амуравелу.</p>
+  <h4>Час на месте</h4>
+  <ul class="see">
+    <li><b>Гавань и Пласа-де-ла-Марина</b> — классический кадр с волнолома</li>
+    <li><b>Смотровые La Garita / El Pico</b> — 15 минут вверх по лестницам, весь амфитеатр</li>
+    <li>Кофе/сидр на площади у гавани</li>
+  </ul>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Машину оставить наверху у въезда — вниз улицы тупиковые и узкие</li>
+    <li>До Овьедо 55 км; на Гаскону — к ~21:30, сидрерии работают до ночи</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/cudillero/cudillero-harbour.jpg" alt="Порт Кудильеро"><figcaption>Гавань · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Cudillero,_puerto_marinero.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/cudillero/cudillero-view.jpg" alt="Дома Кудильеро"><figcaption>Ярусы домов · Pilar.lin.nav · <a href="https://commons.wikimedia.org/wiki/File:Casas_de_Cudillero.JPG">CC BY-SA 3.0 es</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<!-- ============ DAY 4 ============ -->
+<div class="wrap day" id="d4">
+  <div class="num">День 4 · Суббота 22.08</div>
+  <h2>Овьедо, Леон — и домой</h2>
+  <div class="kmpost"><span>утро — Овьедо</span><span><b>780 км</b> · ~7,5 ч руля</span><span>дома <b>~23:00</b> по Лиссабону</span></div>
+  <hr class="road">
+</div>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/oviedo-naranco/santa-maria-del-naranco.jpg" alt="Санта-Мария-дель-Наранко">
+  <figcaption>Санта-Мария-дель-Наранко · Coralma* · <a href="https://commons.wikimedia.org/wiki/File:Palacio,_Iglesia_Santa_Mar%C3%ADa_de_Naranco.jpg">CC0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Гора Наранко: прероманика</h3>
+  <p class="lede">IX век — на двести лет раньше всей европейской романики. Пока вокруг строили из дерева, астурийские короли ставили сводчатые каменные дворцы.</p>
+  <p><b>Санта-Мария-дель-Наранко</b> (освящена в 848-м) строилась не как церковь, а как загородный дворец короля Рамиро I: двухэтажный полностью сводчатый зал — редчайший случай для Европы IX века. Витые «верёвочные» колонны, аркады-мирадоры на торцах, тридцать с лишним рельефных медальонов со всадниками и зверями. <b>Сан-Мигель-де-Лильо</b> в ста метрах выше — дворцовая церковь того же короля; уцелела треть здания, зато на косяках входа — цирковые сцены, скопированные с римского консульского диптиха 506 года. Оба — ЮНЕСКО с 1985-го. С балкона-мирадора — Овьедо и Пикос-де-Эуропа.</p>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>❗ Вход только с гидом: сб 9:30–13:00 и 15:30–19:00, ~40 мин, испанский</li>
+    <li>Билет на оба — <b>5 €, только наличные</b>; сверить сеансы: santamariadelnaranco.es</li>
+    <li>От центра 10 минут на машине; идти на первый утренний сеанс</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/oviedo-naranco/santa-maria-del-naranco-side.jpg" alt="Боковой фасад с лестницами"><figcaption>Фасад с лестницами · Fernando · <a href="https://commons.wikimedia.org/wiki/File:Santa_Mar%C3%ADa_del_Naranco_2021.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/oviedo-naranco/san-miguel-de-lillo.jpg" alt="Сан-Мигель-де-Лильо"><figcaption>Сан-Мигель-де-Лильо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Miguel_de_Lillo_(Oviedo).jpg">CC BY-SA 4.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/oviedo-catedral/catedral-plaza-alfonso-ii.jpg" alt="Собор Овьедо">
+  <figcaption>Собор с площади Альфонсо II · Jorge Franganillo · <a href="https://commons.wikimedia.org/wiki/File:Oviedo-_Plaza_de_la_Catedral_-_53223945633.jpg">CC BY 2.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Собор и Камара-Санта</h3>
+  <p class="lede">«Кто был в Сантьяго, но не в Сан-Сальвадоре, посетил слугу, но не Господина» — говорили паломники. Отсюда же начинается Camino Primitivo: первым в Сантьяго около 820-х прошёл король Альфонсо II.</p>
+  <p><b>Камара-Санта</b> — дворцовая капелла того самого Альфонсо II, начало IX века: Крест Ангелов (808), Крест Победы (908), Ковчег с реликвиями и Сударь Овьедо. В XII веке её украсили апостолатом — шестью парными колоннами-статуями, шедевром романской скульптуры. В 1934-м капеллу взорвали динамитом во время Астурийского восстания — восстановили к 1942-му. Сам собор — поздняя готика XIV–XVI веков с единственной 80-метровой башней, с которой начинается «Регента» Кларина; бронзовая Ана Осорес стоит тут же на площади.</p>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Сб 10:00–17:00; билет (собор + Камара-Санта + клуатр + музей) ~7–8 € — сверить на месте</li>
+    <li>Закладывать ~1 час</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/oviedo-catedral/camara-santa-apostoles.jpg" alt="Апостолат Камара-Санты"><figcaption>Апостолат XII века · Coralma* · <a href="https://commons.wikimedia.org/wiki/File:De_twaalf_apostelen_in_de_Camara_Santa_vd_Kathedraal_van_Oviedo.jpg">CC0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/oviedo-catedral/catedral-fachada.jpg" alt="Западный фасад"><figcaption>Западный фасад · Simon Burchell · <a href="https://commons.wikimedia.org/wiki/File:Catedral_de_Oviedo_03.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/oviedo-museo-ciudad/plaza-del-fontan.jpg" alt="Пласа-дель-Фонтан">
+  <figcaption>Пласа-дель-Фонтан · Jorge Franganillo · <a href="https://commons.wikimedia.org/wiki/File:Oviedo,_Plaza_del_Font%C3%A1n_-_Flickr_-_Jorge_Franganillo.jpg">CC BY 2.0</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Bellas Artes и старый город</h3>
+  <p class="lede">Бесплатный музей с «Апостолатом» Эль Греко, Гойей, Сурбараном, Сорольей, Пикассо, Дали и Миро — сильнейшее провинциальное собрание Испании.</p>
+  <p>Барочный дворец Веларде (1767) плюс стеклянный корпус Мангадо (2015), встроенный прямо в квартал у собора; всего ~15 000 работ. Старый Овьедо — та самая «Ветуста» из «Регенты»: город из тридцати бронзовых скульптур, аркадный двор Фонтан, а по дороге вниз — <b>Foncalada</b>, действующий фонтан IX века, единственное гражданское сооружение раннего средневековья Испании (тоже ЮНЕСКО). Если суббота идёт по плану — на музей есть полтора часа до выезда; если нет, приоритет — Эль Греко и испанское барокко во дворце Веларде.</p>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Бесплатно; сб ~11:30–14:00 и 17:00–20:00 — ⚠ летние часы сверить на museobbaa.com</li>
+    <li>Обед — сидрерия на Гасконе (Tierra Astur) или рынок Фонтан</li>
+    <li><b>~14:30–15:00 — выезд домой</b></li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/oviedo-museo-ciudad/calle-gascona.jpg" alt="Calle Gascona"><figcaption>Гаскона, «бульвар сидра» · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Gascona_(4163640865).jpg">CC BY 2.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<section class="loc">
+  <figure class="full"><img loading="lazy" src="img/leon/catedral-leon-interior.jpg" alt="Витражи собора Леона">
+  <figcaption>Неф Леонского собора · Albeins · <a href="https://commons.wikimedia.org/wiki/File:Interior_de_la_Catedral_de_Le%C3%B3n.JPG">Public domain</a></figcaption></figure>
+  <div class="wrap">
+  <h3>Стоп в Леоне: свет и фрески</h3>
+  <p class="lede">По дороге домой, ~16:20–17:50. Город вырос из лагеря римского легиона Legio VII — отсюда и имя.</p>
+  <p><b>Собор</b> — «Pulchra Leonina», самый французский из испанских готических: почти цитата Реймса, начат ок. 1255-го и закончен рекордно быстро, отсюда цельность. Главное — крупнейший в Испании ансамбль средневековых витражей: ~1 764 м², 134 окна и три розы, XIII–XV века. Во второй половине дня солнце бьёт в западную розу — наше время идеально. <b>Сан-Исидоро</b> в 600 метрах — романский ансамбль 1063 года: в Королевском пантеоне 33 захоронения леонской династии под фресками XII века — «Сикстинской капеллой романики» — с знаменитым календарём сельских работ по месяцам.</p>
+  <div class="prac"><div class="t">Практика</div><ul>
+    <li>Собор до ~19:00, билет 7 € с аудиогидом; Сан-Исидоро до 20:00, ~5–8 €</li>
+    <li>На оба времени впритык: приоритет — витражи + пантеон; Casa Botines Гауди — снаружи по пути</li>
+    <li>Парковка — подземная на Санто-Доминго</li>
+    <li>Дальше: Замора → Саламанка → граница → A25 → дома <b>~23:00</b> (на границе −1 час)</li>
+  </ul></div>
+  <div class="gal">
+    <figure><img loading="lazy" src="img/leon/panteon-real-boveda.jpg" alt="Фрески Королевского пантеона"><figcaption>Своды пантеона, XII в. · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Pante%C3%B3n_Real,_Bas%C3%ADlica_de_San_Isidoro_de_Le%C3%B3n._B%C3%B3veda.jpg">CC BY 3.0</a></figcaption></figure>
+    <figure><img loading="lazy" src="img/leon/catedral-leon-fachada.jpg" alt="Фасад собора Леона"><figcaption>Западный фасад · Nacho Traseira · <a href="https://commons.wikimedia.org/wiki/File:Fachada_occidental_Catedral_de_Le%C3%B3n.jpg">CC BY-SA 4.0</a></figcaption></figure>
+  </div>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<div class="fin" id="fin"><div class="wrap">
+  <h2>Брони и чек-лист</h2>
+  <ul class="check">
+    <li><b>Портик Славы</b> на ср 19.08 — visitas.catedraldesantiago.es (сеансы разбирают)</li>
+    <li><b>Катедралес</b> на пт 21.08, слот к отливу 17:56 — ascatedrais.xunta.gal (бесплатно)</li>
+    <li><b>Наранко</b> — сверить субботние сеансы, взять наличные (5 €)</li>
+    <li><b>Отели</b>: Сантьяго ×2 (заезд ~01:00 — предупредить!), А-Корунья, Овьедо</li>
+    <li>Погода на чт 20.08 — Коста-да-Морте самый погодозависимый день</li>
+    <li>Мелкие наличные: Наранко, парковки</li>
+  </ul>
+  <h4>Перепроверить на месте</h4>
+  <ul class="small">
+    <li>⚠ Casa Picasso в Корунье — статус реконструкции (coruna.gal)</li>
+    <li>⚠ Летние часы Bellas Artes Овьедо (museobbaa.com)</li>
+    <li>⚠ Полный тариф собора Овьедо и цена Сан-Исидоро — источники расходятся</li>
+    <li>⚠ Подсветка и сбросы воды на Эсаро — турофис Думбрии</li>
+  </ul>
+</div></div>
+
+<footer>
+  Finis Terrae · роудбук 18–22.08.2026 · фото — Wikimedia Commons, авторы и лицензии подписаны у кадров ·
+  планер трипа — в Obsidian
+</footer>
+
+</body>
+</html>
