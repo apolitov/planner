@@ -96,6 +96,18 @@ ul.see b{font-weight:600}
 .tidescale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.45rem}
 .tide .cap{font-size:.83rem;color:var(--muted);margin-top:.6rem}
 
+/* ---------- plan B cards ---------- */
+.altgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:1.4rem 0}
+@media(max-width:640px){.altgrid{grid-template-columns:1fr}}
+.alt{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.alt img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.alt .in{padding:.8rem 1rem 1rem}
+.alt h5{font-family:"Forum",Georgia,serif;font-weight:400;font-size:1.25rem;line-height:1.2;margin:0 0 .35rem}
+.alt h5 a{color:var(--ink);text-decoration:none}
+.alt p{font-size:.88rem;margin:0 0 .55rem}
+.alt .meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+.alt .meta b{color:var(--cider);font-weight:500}
+
 /* ---------- final / footer ---------- */
 .fin{background:var(--card);border-top:1px solid var(--line);margin-top:3.5rem;padding:3rem 0 2rem}
 .fin h2{font-size:2rem;margin-bottom:1rem}
@@ -131,6 +143,7 @@ a.lb img{cursor:zoom-in}
   <a href="#d2"><b>Чт</b> край земли</a>
   <a href="#d3"><b>Пт</b> берег</a>
   <a href="#d4"><b>Сб</b> Овьедо → дом</a>
+  <a href="#alt">🌧 план Б</a>
   <a class="book" href="#fin">✓ брони</a>
 </div></nav>
 
@@ -461,6 +474,53 @@ a.lb img{cursor:zoom-in}
   </div>
   </div>
 </section>
+
+
+<!-- ============ PLAN B ============ -->
+<div class="wrap day" id="alt">
+  <div class="num">План Б · Овьедо и окрестности</div>
+  <h2>Если погода гонит с побережья</h2>
+  <div class="kmpost"><span>радиус — час от Овьедо</span><span>архитектура · искусство · природа</span></div>
+  <hr class="road">
+</div>
+
+<section class="loc"><div class="wide" style="padding:0 20px">
+  <p class="lede" style="max-width:680px;margin:0 auto 1rem">Приехали в Овьедо раньше — меню на выбор. Логистика подсказывает связки: Нимейер лежит прямо на пятничной дороге (Авилес — между Кудильеро и Овьедо), Санта-Кристина — на субботней A-66 домой, а восточная тройка (Тито-Бустильо, Гульпиюри, Буфонес) сцепляется в одну вылазку — между ними по 20–30 минут. Дождливый вечер пятницы закрывает и Bellas Artes из основной программы: он открыт до 20:00 — суббота станет свободнее. Название карточки — ссылка в Maps.</p>
+  <div class="altgrid">
+    <div class="alt"><a class="lb" href="img/oviedo-alt/santullano.jpg"><img loading="lazy" src="img/oviedo-alt/santullano_t.jpg" alt="Сантульяно"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=San+Juli%C3%A1n+de+los+Prados+Oviedo">Сантульяно</a></h5>
+      <p>Крупнейшая церковь прероманики (~830 год, мастер Тиода) в 2 км от центра. Три яруса фресок IX века без единой человеческой фигуры: римская иллюзорная архитектура на стенах астурийской базилики.</p>
+      <div class="meta">2 км · сеансы пн–сб утром, вт–сб до 17:30 · 3 € · <b>в дождь идеально</b></div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/santa-cristina-lena.jpg"><img loading="lazy" src="img/oviedo-alt/santa-cristina-lena_t.jpg" alt="Санта-Кристина-де-Лена"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Santa+Cristina+de+Lena">Санта-Кристина-де-Лена</a></h5>
+      <p>Та же «рамирская» мастерская, что строила Наранко, — а внутри единственный в Астурии каменный иконостас с вестготскими рельефами VII века. Одинокий холм над долиной, ЮНЕСКО с 1985-го.</p>
+      <div class="meta">35 км, по пути домой по A-66 · вт–вс 11–13 и 16:30–18:30 · звонить смотрительнице: 609 942 153 · подъём 700 м, в дождь скользко</div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/centro-niemeyer.jpg"><img loading="lazy" src="img/oviedo-alt/centro-niemeyer_t.jpg" alt="Центр Нимейера, Авилес"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Centro+Niemeyer+Aviles">Центр Нимейера, Авилес</a></h5>
+      <p>Единственный Нимейер в Испании (2011) — белый купол, красная «волна» аудиториума и башня над рией. В августе под куполом Буртинский «Agua», Фонткуберта и биеннале архитектуры. Старый Авилес с аркадами — в 10 минутах.</p>
+      <div class="meta">30 км, лежит на пятничном маршруте · до 20:30 · выставки ~4 €, территория бесплатно · <b>дождь — союзник</b></div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/laboral-gijon.jpg"><img loading="lazy" src="img/oviedo-alt/laboral-gijon_t.jpg" alt="Лаборал и Чильида, Хихон"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Universidad+Laboral+Gijon">Лаборал и Чильида, Хихон</a></h5>
+      <p>Самое большое здание Испании: 270 000 м², больше Эскориала (Луис Мойя, 1946–56). Рядом на холме над морем — «Elogio del Horizonte» Чильиды: встань внутрь бетонной «улитки» и услышишь усиленный гул океана.</p>
+      <div class="meta">30 км · экскурсии 10:30 / 13:00 / 17:00, 6 € (билеты заранее) · двор бесплатно · Чильида — на окно в осадках</div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/senda-del-oso.jpg"><img loading="lazy" src="img/oviedo-alt/senda-del-oso_t.jpg" alt="Медвежья тропа"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Senda+del+Oso+Tunon">Медвежья тропа</a></h5>
+      <p>Узкоколейка XIX века, превращённая в тропу: теснина реки Трубия, туннели, подвесные мостики. В горном вольере у Проасы — медведица Молина, кормление около полудня. Лучший кусок — Туньон — Проаса, 11 км.</p>
+      <div class="meta">25 км · бесплатно · прокат велика ~25–28 € с шаттлом · морось ок, ливень — нет</div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/tito-bustillo.jpg"><img loading="lazy" src="img/oviedo-alt/tito-bustillo_t.jpg" alt="Пещера Тито-Бустильо"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Cueva+Tito+Bustillo+Ribadesella">Пещера Тито-Бустильо</a></h5>
+      <p>Настоящая палеолитическая живопись, не реплика: панель лошадей мадленской эпохи, ЮНЕСКО. 700 метров по живой пещере с рекой. Группы по 15 человек — билеты на субботу проверять немедленно.</p>
+      <div class="meta">84 км (55 мин) · ср–вс, сеансы 10:15–17:00 · ~7–8 €, centrotitobustillo.com · <b>полностью крытая</b></div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/gulpiyuri.jpg"><img loading="lazy" src="img/oviedo-alt/gulpiyuri_t.jpg" alt="Гульпиюри"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Playa+de+Gulpiyuri">Гульпиюри</a></h5>
+      <p>Пляж-воронка посреди луга в сотне метров от моря: вода приходит по карстовым туннелям. Работает только в полную воду — в субботу прилив ~13:00, коэффициент низкий, чаша может быть неполной.</p>
+      <div class="meta">100 км · бесплатно · 700 м пешком по полю · строго по приливу</div></div></div>
+    <div class="alt"><a class="lb" href="img/oviedo-alt/bufones-pria.jpg"><img loading="lazy" src="img/oviedo-alt/bufones-pria_t.jpg" alt="Буфонес-де-Приа"></a>
+      <div class="in"><h5><a href="https://www.google.com/maps/search/?api=1&query=Bufones+de+Pria">Буфонес-де-Приа</a></h5>
+      <p>Морские гейзеры в известняковых обрывах: при накате волна выстреливает столбами выше 20 метров с рёвом, слышным за сотни метров. Нужны прилив и волна — штормовой фронт тут работает на зрелище.</p>
+      <div class="meta">90 км · бесплатно · 15–20 мин пешком · к жерлам не подходить · шторм = союзник</div></div></div>
+  </div>
+</div></section>
 
 <!-- ============ FINAL ============ -->
 <div class="fin" id="fin"><div class="wrap">
