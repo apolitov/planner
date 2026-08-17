@@ -61,6 +61,7 @@ nav a.book{border-color:var(--cider);color:var(--cider)}
 .day h2{font-size:clamp(2.1rem,6.5vw,3.1rem);margin:.25rem 0 .8rem}
 .kmpost{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted)}
 .kmpost b{color:var(--ink);font-weight:500}
+.kmpost a{color:var(--sea);text-decoration:none;border-bottom:1px dotted var(--sea)}
 .road{border:none;border-top:2px dashed var(--dash);margin:1.5rem 0 0}
 
 /* ---------- location ---------- */
@@ -104,6 +105,10 @@ ul.see b{font-weight:600}
 .small{font-size:.82rem;color:var(--muted)}
 .small li{padding:.15rem 0}
 footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+a.lb img{cursor:zoom-in}
+#lbox{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out}
+#lbox.on{display:flex}
+#lbox img{max-width:94vw;max-height:94vh;object-fit:contain}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -133,7 +138,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 <div class="wrap day" id="d0">
   <div class="num">День 0 · Вторник 18.08</div>
   <h2>Ночной перегон</h2>
-  <div class="kmpost"><span><b>610 км</b> · ~6 ч</span><span>A1 → Порту → A3 → AP-9</span><span>в Сантьяго <b>~01:00</b></span></div>
+  <div class="kmpost"><span><b>610 км</b> · ~6 ч</span><span>A1 → Порту → A3 → AP-9</span><span>в Сантьяго <b>~01:00</b></span><span><a href="https://www.google.com/maps/dir/?api=1&origin=Lisboa&destination=Santiago+de+Compostela&waypoints=Fortaleza+de+Valen%C3%A7a&travelmode=driving">🗺 маршрут в Maps</a></span></div>
   <hr class="road">
 </div>
 
@@ -144,8 +149,8 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
   <h4>Опция: разминка в полночь</h4>
   <p>Крепость <b>Валенса-ду-Минью</b> — прямо у съезда с трассы, открыта круглосуточно, вход свободный, ночью подсвечена. Двойная звезда по системе Вобана, перестроена в 1661–1713 после восстановления независимости Португалии, периметр стен ~5 км — одна из крупнейших бастионных крепостей Европы. 20 минут по стенам — и дальше. Через реку — огни <b>Туя</b>: собор-крепость освящён в 1225-м, его портал считается первой готической скульптурой Иберии. Рассмотрим с испанского берега в другой раз — а Международный мост 1886 года проедем прямо по нижнему ярусу (легенда приписывает его Эйфелю, на деле — инженер Пелайо Мансебо).</p>
   <div class="gal">
-    <figure><img loading="lazy" src="img/valenca-tui/valenca-fort.jpg" alt="Крепость Валенса на закате"><figcaption>Бастионы Валенсы · Contando Estrelas · <a href="https://commons.wikimedia.org/wiki/File:Fortaleza_de_Valen%C3%A7a_(3870157087).jpg">CC BY-SA 2.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/valenca-tui/tui-mino.jpg" alt="Туй над рекой Миньо"><figcaption>Туй над Миньо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:El_r%C3%ADo_Mi%C3%B1o_a_su_paso_por_la_Catedral_de_Tuy.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/valenca-tui/valenca-fort.jpg"><img loading="lazy" src="img/valenca-tui/valenca-fort_t.jpg" alt="Крепость Валенса на закате"></a><figcaption>Бастионы Валенсы · Contando Estrelas · <a href="https://commons.wikimedia.org/wiki/File:Fortaleza_de_Valen%C3%A7a_(3870157087).jpg">CC BY-SA 2.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/valenca-tui/tui-mino.jpg"><img loading="lazy" src="img/valenca-tui/tui-mino_t.jpg" alt="Туй над рекой Миньо"></a><figcaption>Туй над Миньо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:El_r%C3%ADo_Mi%C3%B1o_a_su_paso_por_la_Catedral_de_Tuy.jpg">CC BY-SA 4.0</a></figcaption></figure>
   </div>
 </div></section>
 
@@ -153,12 +158,12 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 <div class="wrap day" id="d1">
   <div class="num">День 1 · Среда 19.08</div>
   <h2>Сантьяго-де-Компостела</h2>
-  <div class="kmpost"><span><b>0 км</b> — весь день пешком</span><span>старый город = ЮНЕСКО (1985)</span></div>
+  <div class="kmpost"><span><b>0 км</b> — весь день пешком</span><span>старый город = ЮНЕСКО (1985)</span><span><a href="https://www.google.com/maps/dir/?api=1&origin=Praza+do+Obradoiro&destination=Parque+da+Alameda%2C+Santiago&waypoints=Mercado+de+Abastos+de+Santiago%7CMuseo+do+Pobo+Galego%7CCGAC+Santiago+de+Compostela&travelmode=walking">🗺 маршрут в Maps</a></span></div>
   <hr class="road">
 </div>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/santiago/obradoiro-panorama.jpg" alt="Площадь Обрадойро с высоты">
+  <figure class="full"><a class="lb" href="img/santiago/obradoiro-panorama.jpg"><img loading="lazy" src="img/santiago/obradoiro-panorama_t.jpg" alt="Площадь Обрадойро с высоты"></a>
   <figcaption>Обрадойро с высоты парадора · A. Gonzalez Alameda · <a href="https://commons.wikimedia.org/wiki/File:Parador_de_Santiago_-_Plaza_del_Obradoiro_desde_la_Suite_Real.jpg">CC BY-SA 3.0 es</a></figcaption></figure>
   <div class="wrap">
   <h3>Собор и Портик Славы</h3>
@@ -180,14 +185,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Парковка — Xoán XXIII на краю старого города (внутрь на машине нельзя — зона с въездом по разрешениям; отель в старом городе регистрирует номер сам)</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/santiago/portico-pantocrator.jpg" alt="Пантократор Портика Славы"><figcaption>Христос во славе, тимпан · pedronchi · <a href="https://commons.wikimedia.org/wiki/File:Pantocrator_del_p%C3%B3rtico_de_la_Gloria_en_Santiago_de_Compostela.jpg">CC BY 2.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/santiago/portico-gloria.jpg" alt="Старцы Апокалипсиса"><figcaption>Старцы с инструментами · P.Lameiro · <a href="https://commons.wikimedia.org/wiki/File:Portico_da_Gloria_11-15.JPG">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/santiago/portico-pantocrator.jpg"><img loading="lazy" src="img/santiago/portico-pantocrator_t.jpg" alt="Пантократор Портика Славы"></a><figcaption>Христос во славе, тимпан · pedronchi · <a href="https://commons.wikimedia.org/wiki/File:Pantocrator_del_p%C3%B3rtico_de_la_Gloria_en_Santiago_de_Compostela.jpg">CC BY 2.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/santiago/mercado-abastos.jpg" alt="Меркадо-де-Абастос">
+  <figure class="full"><a class="lb" href="img/santiago/mercado-abastos.jpg"><img loading="lazy" src="img/santiago/mercado-abastos_t.jpg" alt="Меркадо-де-Абастос"></a>
   <figcaption>Гранитные нефы рынка · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:2026._Mercado_de_Abastos_de_Santiago_de_Compostela._Galiza.jpg">CC BY-SA 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Город и рынок</h3>
@@ -203,7 +207,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/santiago/cgac.jpg" alt="CGAC Алвару Сизы">
+  <figure class="full"><a class="lb" href="img/santiago/cgac.jpg"><img loading="lazy" src="img/santiago/cgac_t.jpg" alt="CGAC Алвару Сизы"></a>
   <figcaption>CGAC, Алвару Сиза (1993) · MarcosEire · <a href="https://commons.wikimedia.org/wiki/File:CGAC_Santiago_de_Compostela.jpg">CC BY 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>CGAC и Бонаваль</h3>
@@ -215,8 +219,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Парк Бонаваль (Сиза, 1994) — между ними, на закате отсюда весь город</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/santiago/bonaval-staircase.jpg" alt="Тройная винтовая лестница"><figcaption>Тройная спираль Андраде · J. L. Cernadas Iglesias · <a href="https://commons.wikimedia.org/wiki/File:Escaleira_tripla_de_caracol_(Compostela).jpg">CC BY 2.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/santiago/bonaval-church.jpg" alt="Сан-Домингос-де-Бонаваль"><figcaption>Сан-Домингос-де-Бонаваль · Bene Riobó · <a href="https://commons.wikimedia.org/wiki/File:Igrexa_de_San_Domingos_de_Bonaval_01.jpg">CC0</a></figcaption></figure>
+    <figure><a class="lb" href="img/santiago/bonaval-staircase.jpg"><img loading="lazy" src="img/santiago/bonaval-staircase_t.jpg" alt="Тройная винтовая лестница"></a><figcaption>Тройная спираль Андраде · J. L. Cernadas Iglesias · <a href="https://commons.wikimedia.org/wiki/File:Escaleira_tripla_de_caracol_(Compostela).jpg">CC BY 2.0</a></figcaption></figure>
   </div>
   </div>
 </section>
@@ -225,12 +228,12 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 <div class="wrap day" id="d2">
   <div class="num">День 2 · Четверг 20.08</div>
   <h2>Коста-да-Морте: на край земли</h2>
-  <div class="kmpost"><span><b>235 км</b> · ~3,5 ч руля</span><span>Сантьяго → Эсаро → Фистерра → А-Корунья</span></div>
+  <div class="kmpost"><span><b>235 км</b> · ~3,5 ч руля</span><span>Сантьяго → Эсаро → Фистерра → А-Корунья</span><span><a href="https://www.google.com/maps/dir/?api=1&origin=Santiago+de+Compostela&destination=A+Coru%C3%B1a&waypoints=Mirador+de+%C3%89zaro%7CFaro+de+Fisterra&travelmode=driving">🗺 маршрут в Maps</a></span></div>
   <hr class="road">
 </div>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/ezaro/fervenza-1.jpg" alt="Водопад Эсаро">
+  <figure class="full"><a class="lb" href="img/ezaro/fervenza-1.jpg"><img loading="lazy" src="img/ezaro/fervenza-1_t.jpg" alt="Водопад Эсаро"></a>
   <figcaption>Шальяс падает в океан · Basotxerri · <a href="https://commons.wikimedia.org/wiki/File:%C3%89zaro_-_Cascada_-BT-_02.jpg">CC BY-SA 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Фервенса-де-Эсаро</h3>
@@ -245,14 +248,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Бесплатно, круглосуточно; от Сантьяго ~1 ч 15 мин по AC-550 вдоль океана</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/ezaro/mirador.jpg" alt="Вид с мирадора Эсаро"><figcaption>Вид с мирадора · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Mirador_de_%C3%89zaro,_Dumbr%C3%ADa_(5164940908).jpg">CC BY 2.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/ezaro/fervenza-2.jpg" alt="Водопад после дождей"><figcaption>После дождей · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Fervenza_de_%C3%89zaro,_Dumbr%C3%ADa_(5164986758).jpg">CC BY 2.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/ezaro/mirador.jpg"><img loading="lazy" src="img/ezaro/mirador_t.jpg" alt="Вид с мирадора Эсаро"></a><figcaption>Вид с мирадора · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Mirador_de_%C3%89zaro,_Dumbr%C3%ADa_(5164940908).jpg">CC BY 2.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/fisterra/cape-coast.jpg" alt="Панорама с мыса Фистерра">
+  <figure class="full"><a class="lb" href="img/fisterra/cape-coast.jpg"><img loading="lazy" src="img/fisterra/cape-coast_t.jpg" alt="Панорама с мыса Фистерра"></a>
   <figcaption>Панорама с мыса · Xosema · <a href="https://commons.wikimedia.org/wiki/File:Fisterra_-_Panoramica_desde_cabo_Fisterra_-_01.jpg">CC BY-SA 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Мыс Фистерра</h3>
@@ -272,14 +274,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>До Коруньи ~115 км, выезжать так, чтобы к вечеру быть на набережной</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/fisterra/faro.jpg" alt="Маяк Фистерры"><figcaption>Маяк 1853 года · Basotxerri · <a href="https://commons.wikimedia.org/wiki/File:Cabo_de_Fisterra_-_Faro_-BT-_01.jpg">CC BY-SA 4.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/fisterra/faro-peregrinos.jpg" alt="Паломники у маяка"><figcaption>Паломники у маяка · <a href="https://commons.wikimedia.org/wiki/File:Faro_de_Fisterra_-_Faro_de_Finisterre_img_n01_e_peregrinos.jpg">CC0</a></figcaption></figure>
+    <figure><a class="lb" href="img/fisterra/faro.jpg"><img loading="lazy" src="img/fisterra/faro_t.jpg" alt="Маяк Фистерры"></a><figcaption>Маяк 1853 года · Basotxerri · <a href="https://commons.wikimedia.org/wiki/File:Cabo_de_Fisterra_-_Faro_-BT-_01.jpg">CC BY-SA 4.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/a-coruna-city/marina-galleries-panorama.jpg" alt="Галереи Марины">
+  <figure class="full"><a class="lb" href="img/a-coruna-city/marina-galleries-panorama.jpg"><img loading="lazy" src="img/a-coruna-city/marina-galleries-panorama_t.jpg" alt="Галереи Марины"></a>
   <figcaption>Авенида-да-Марина · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:Avenida_de_La_Marina_(La_Coru%C3%B1a).jpg">CC BY-SA 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Вечер: А-Корунья, «город стекла»</h3>
@@ -292,8 +293,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Сидаде-Велья: романская церковь Сантьяго (XII в.), тихие площади Азкаррага и Фариня</li>
   </ul>
   <div class="gal">
-    <figure><img loading="lazy" src="img/a-coruna-city/maria-pita-square.jpg" alt="Площадь Марии Питы"><figcaption>Пласа-де-Мария-Пита · Diego Delso · <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Mar%C3%ADa_Pita,_La_Coru%C3%B1a,_Espa%C3%B1a,_2015-09-25,_DD_91.jpg">CC BY-SA 4.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/a-coruna-city/marina-galleries-closeup.jpg" alt="Галереи крупно"><figcaption>Галереи, деталь · kdperico · <a href="https://commons.wikimedia.org/wiki/File:Galer%C3%ADas_A_Marina,_A_Coru%C3%B1a.jpg">CC BY-SA 2.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/a-coruna-city/maria-pita-square.jpg"><img loading="lazy" src="img/a-coruna-city/maria-pita-square_t.jpg" alt="Площадь Марии Питы"></a><figcaption>Пласа-де-Мария-Пита · Diego Delso · <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Mar%C3%ADa_Pita,_La_Coru%C3%B1a,_Espa%C3%B1a,_2015-09-25,_DD_91.jpg">CC BY-SA 4.0</a></figcaption></figure>
   </div>
   </div>
 </section>
@@ -302,12 +302,12 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 <div class="wrap day" id="d3">
   <div class="num">День 3 · Пятница 21.08</div>
   <h2>Римский маяк и каменные соборы</h2>
-  <div class="kmpost"><span><b>305 км</b> · ~3,5 ч руля</span><span>А-Корунья → Рибадео → Кудильеро → Овьедо</span><span>отлив <b>17:56</b></span></div>
+  <div class="kmpost"><span><b>305 км</b> · ~3,5 ч руля</span><span>А-Корунья → Рибадео → Кудильеро → Овьедо</span><span>отлив <b>17:56</b></span><span><a href="https://www.google.com/maps/dir/?api=1&origin=Torre+de+H%C3%A9rcules%2C+A+Coru%C3%B1a&destination=Calle+Gascona%2C+Oviedo&waypoints=Ribadeo%7CPraia+das+Catedrais%7CCudillero&travelmode=driving">🗺 маршрут в Maps</a></span></div>
   <hr class="road">
 </div>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/tower-of-hercules/tower-hercules-headland.jpg" alt="Башня Геркулеса">
+  <figure class="full"><a class="lb" href="img/tower-of-hercules/tower-hercules-headland.jpg"><img loading="lazy" src="img/tower-of-hercules/tower-hercules-headland_t.jpg" alt="Башня Геркулеса"></a>
   <figcaption>Башня Геркулеса на мысу · Diego Delso · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules,_La_Coru%C3%B1a,_Espa%C3%B1a,_2015-09-25,_DD_35-37_HDR.jpg">CC BY-SA 4.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Башня Геркулеса</h3>
@@ -324,15 +324,11 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>⚠ Casa Museo Picasso (семья жила тут в 1891–1895, юный Пабло впервые выставился) — возможно, ещё закрыт на реконструкцию, проверить на coruna.gal</li>
     <li>~14:00 — выезд на восток, обед в Рибадео (155 км, ~1 ч 40 мин)</li>
   </ul></div>
-  <div class="gal">
-    <figure><img loading="lazy" src="img/tower-of-hercules/tower-hercules-sunset.jpg" alt="Башня на закате"><figcaption>El fosilmaníaco · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules_atardecer.JPG">CC BY-SA 3.0 es</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/tower-of-hercules/tower-hercules-coast.jpg" alt="Башня с побережья"><figcaption>L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Torre_de_H%C3%A9rcules_-_DivesGallaecia2012-3.jpg">CC BY-SA 3.0</a></figcaption></figure>
-  </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/praia-das-catedrais/catedrais-arches-04.jpg" alt="Арки Катедралес">
+  <figure class="full"><a class="lb" href="img/praia-das-catedrais/catedrais-arches-04.jpg"><img loading="lazy" src="img/praia-das-catedrais/catedrais-arches-04_t.jpg" alt="Арки Катедралес"></a>
   <figcaption>Аркады «соборов» · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-04.jpg">CC BY-SA 3.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Прайя-де-лас-Катедралес</h3>
@@ -357,14 +353,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Обед по пути — Ринло (2 км): рыбацкая деревушка, знаменитый аррос с омаром</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/praia-das-catedrais/catedrais-arches-19.jpg" alt="Арки в отлив"><figcaption>L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-19.jpg">CC BY-SA 3.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/praia-das-catedrais/catedrais-cave.jpg" alt="Грот в сланцах"><figcaption>Грот в сланцах · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Cova_e_xistos_na_praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-13.jpg">CC BY-SA 3.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/praia-das-catedrais/catedrais-cave.jpg"><img loading="lazy" src="img/praia-das-catedrais/catedrais-cave_t.jpg" alt="Грот в сланцах"></a><figcaption>Грот в сланцах · L. M. Bugallo Sánchez · <a href="https://commons.wikimedia.org/wiki/File:Cova_e_xistos_na_praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-13.jpg">CC BY-SA 3.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/cudillero/cudillero-amphitheatre.jpg" alt="Кудильеро">
+  <figure class="full"><a class="lb" href="img/cudillero/cudillero-amphitheatre.jpg"><img loading="lazy" src="img/cudillero/cudillero-amphitheatre_t.jpg" alt="Кудильеро"></a>
   <figcaption>Амфитеатр Кудильеро · Lourdes Cardenal · <a href="https://commons.wikimedia.org/wiki/File:Asturias_Cudillero_Vista_general_lou.jpg">CC BY-SA 3.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Кудильеро на закате</h3>
@@ -382,8 +377,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>⚠ В Овьедо действует ZBE (центр, 24/7): на португальских номерах без наклейки — ехать сразу в отельный гараж или общественный подземный паркинг (клиентам паркингов доступ автоматический), по центру не кружить. Штраф 200 €</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/cudillero/cudillero-harbour.jpg" alt="Порт Кудильеро"><figcaption>Гавань · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Cudillero,_puerto_marinero.jpg">CC BY-SA 4.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/cudillero/cudillero-view.jpg" alt="Дома Кудильеро"><figcaption>Ярусы домов · Pilar.lin.nav · <a href="https://commons.wikimedia.org/wiki/File:Casas_de_Cudillero.JPG">CC BY-SA 3.0 es</a></figcaption></figure>
+    <figure><a class="lb" href="img/cudillero/cudillero-harbour.jpg"><img loading="lazy" src="img/cudillero/cudillero-harbour_t.jpg" alt="Порт Кудильеро"></a><figcaption>Гавань · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Cudillero,_puerto_marinero.jpg">CC BY-SA 4.0</a></figcaption></figure>
   </div>
   </div>
 </section>
@@ -392,12 +386,12 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
 <div class="wrap day" id="d4">
   <div class="num">День 4 · Суббота 22.08</div>
   <h2>Овьедо, Леон — и домой</h2>
-  <div class="kmpost"><span>утро — Овьедо</span><span><b>780 км</b> · ~7,5 ч руля</span><span>дома <b>~23:00</b> по Лиссабону</span></div>
+  <div class="kmpost"><span>утро — Овьедо</span><span><b>780 км</b> · ~7,5 ч руля</span><span>дома <b>~23:00</b> по Лиссабону</span><span><a href="https://www.google.com/maps/dir/?api=1&origin=Oviedo&destination=Lisboa&waypoints=Santa+Mar%C3%ADa+del+Naranco%7CCatedral+de+Le%C3%B3n&travelmode=driving">🗺 маршрут в Maps</a></span></div>
   <hr class="road">
 </div>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/oviedo-naranco/santa-maria-del-naranco.jpg" alt="Санта-Мария-дель-Наранко">
+  <figure class="full"><a class="lb" href="img/oviedo-naranco/santa-maria-del-naranco.jpg"><img loading="lazy" src="img/oviedo-naranco/santa-maria-del-naranco_t.jpg" alt="Санта-Мария-дель-Наранко"></a>
   <figcaption>Санта-Мария-дель-Наранко · Coralma* · <a href="https://commons.wikimedia.org/wiki/File:Palacio,_Iglesia_Santa_Mar%C3%ADa_de_Naranco.jpg">CC0</a></figcaption></figure>
   <div class="wrap">
   <h3>Гора Наранко: прероманика</h3>
@@ -409,14 +403,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>От центра 10 минут на машине; идти на первый утренний сеанс</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/oviedo-naranco/santa-maria-del-naranco-side.jpg" alt="Боковой фасад с лестницами"><figcaption>Фасад с лестницами · Fernando · <a href="https://commons.wikimedia.org/wiki/File:Santa_Mar%C3%ADa_del_Naranco_2021.jpg">CC BY-SA 4.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/oviedo-naranco/san-miguel-de-lillo.jpg" alt="Сан-Мигель-де-Лильо"><figcaption>Сан-Мигель-де-Лильо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Miguel_de_Lillo_(Oviedo).jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/oviedo-naranco/san-miguel-de-lillo.jpg"><img loading="lazy" src="img/oviedo-naranco/san-miguel-de-lillo_t.jpg" alt="Сан-Мигель-де-Лильо"></a><figcaption>Сан-Мигель-де-Лильо · Jl FilpoC · <a href="https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Miguel_de_Lillo_(Oviedo).jpg">CC BY-SA 4.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/oviedo-catedral/catedral-plaza-alfonso-ii.jpg" alt="Собор Овьедо">
+  <figure class="full"><a class="lb" href="img/oviedo-catedral/catedral-plaza-alfonso-ii.jpg"><img loading="lazy" src="img/oviedo-catedral/catedral-plaza-alfonso-ii_t.jpg" alt="Собор Овьедо"></a>
   <figcaption>Собор с площади Альфонсо II · Jorge Franganillo · <a href="https://commons.wikimedia.org/wiki/File:Oviedo-_Plaza_de_la_Catedral_-_53223945633.jpg">CC BY 2.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Собор и Камара-Санта</h3>
@@ -427,14 +420,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Закладывать ~1 час</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/oviedo-catedral/camara-santa-apostoles.jpg" alt="Апостолат Камара-Санты"><figcaption>Апостолат XII века · Coralma* · <a href="https://commons.wikimedia.org/wiki/File:De_twaalf_apostelen_in_de_Camara_Santa_vd_Kathedraal_van_Oviedo.jpg">CC0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/oviedo-catedral/catedral-fachada.jpg" alt="Западный фасад"><figcaption>Западный фасад · Simon Burchell · <a href="https://commons.wikimedia.org/wiki/File:Catedral_de_Oviedo_03.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/oviedo-catedral/camara-santa-apostoles.jpg"><img loading="lazy" src="img/oviedo-catedral/camara-santa-apostoles_t.jpg" alt="Апостолат Камара-Санты"></a><figcaption>Апостолат XII века · Coralma* · <a href="https://commons.wikimedia.org/wiki/File:De_twaalf_apostelen_in_de_Camara_Santa_vd_Kathedraal_van_Oviedo.jpg">CC0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/oviedo-museo-ciudad/plaza-del-fontan.jpg" alt="Пласа-дель-Фонтан">
+  <figure class="full"><a class="lb" href="img/oviedo-museo-ciudad/plaza-del-fontan.jpg"><img loading="lazy" src="img/oviedo-museo-ciudad/plaza-del-fontan_t.jpg" alt="Пласа-дель-Фонтан"></a>
   <figcaption>Пласа-дель-Фонтан · Jorge Franganillo · <a href="https://commons.wikimedia.org/wiki/File:Oviedo,_Plaza_del_Font%C3%A1n_-_Flickr_-_Jorge_Franganillo.jpg">CC BY 2.0</a></figcaption></figure>
   <div class="wrap">
   <h3>Bellas Artes и старый город</h3>
@@ -446,13 +438,13 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li><b>~14:30–15:00 — выезд домой</b></li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/oviedo-museo-ciudad/calle-gascona.jpg" alt="Calle Gascona"><figcaption>Гаскона, «бульвар сидра» · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Gascona_(4163640865).jpg">CC BY 2.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/oviedo-museo-ciudad/calle-gascona.jpg"><img loading="lazy" src="img/oviedo-museo-ciudad/calle-gascona_t.jpg" alt="Calle Gascona"></a><figcaption>Гаскона, «бульвар сидра» · amaianos · <a href="https://commons.wikimedia.org/wiki/File:Gascona_(4163640865).jpg">CC BY 2.0</a></figcaption></figure>
   </div>
   </div>
 </section>
 
 <section class="loc">
-  <figure class="full"><img loading="lazy" src="img/leon/catedral-leon-interior.jpg" alt="Витражи собора Леона">
+  <figure class="full"><a class="lb" href="img/leon/catedral-leon-interior.jpg"><img loading="lazy" src="img/leon/catedral-leon-interior_t.jpg" alt="Витражи собора Леона"></a>
   <figcaption>Неф Леонского собора · Albeins · <a href="https://commons.wikimedia.org/wiki/File:Interior_de_la_Catedral_de_Le%C3%B3n.JPG">Public domain</a></figcaption></figure>
   <div class="wrap">
   <h3>Стоп в Леоне: свет и фрески</h3>
@@ -465,8 +457,7 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
     <li>Дальше: Замора → Саламанка → граница → A25 → дома <b>~23:00</b> (на границе −1 час)</li>
   </ul></div>
   <div class="gal">
-    <figure><img loading="lazy" src="img/leon/panteon-real-boveda.jpg" alt="Фрески Королевского пантеона"><figcaption>Своды пантеона, XII в. · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Pante%C3%B3n_Real,_Bas%C3%ADlica_de_San_Isidoro_de_Le%C3%B3n._B%C3%B3veda.jpg">CC BY 3.0</a></figcaption></figure>
-    <figure><img loading="lazy" src="img/leon/catedral-leon-fachada.jpg" alt="Фасад собора Леона"><figcaption>Западный фасад · Nacho Traseira · <a href="https://commons.wikimedia.org/wiki/File:Fachada_occidental_Catedral_de_Le%C3%B3n.jpg">CC BY-SA 4.0</a></figcaption></figure>
+    <figure><a class="lb" href="img/leon/panteon-real-boveda.jpg"><img loading="lazy" src="img/leon/panteon-real-boveda_t.jpg" alt="Фрески Королевского пантеона"></a><figcaption>Своды пантеона, XII в. · J. L. Filpo Cabana · <a href="https://commons.wikimedia.org/wiki/File:Pante%C3%B3n_Real,_Bas%C3%ADlica_de_San_Isidoro_de_Le%C3%B3n._B%C3%B3veda.jpg">CC BY 3.0</a></figcaption></figure>
   </div>
   </div>
 </section>
@@ -496,5 +487,15 @@ footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",mono
   планер трипа — в Obsidian
 </footer>
 
+<div id="lbox"><img alt=""></div>
+<script>
+const lbox=document.getElementById('lbox');
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a.lb');
+  if(a){e.preventDefault();lbox.querySelector('img').src=a.getAttribute('href');lbox.classList.add('on');}
+  else if(e.target.closest('#lbox')){lbox.classList.remove('on');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lbox.classList.remove('on');});
+</script>
 </body>
 </html>
