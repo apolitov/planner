@@ -81,7 +81,9 @@ ul.see b{font-weight:600}
 .prac .t{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cider);margin-bottom:.4rem}
 .prac ul{list-style:none;padding:0}
 .prac li{padding:.18rem 0}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.4rem 0 .6rem}
+.gal{display:grid;grid-template-columns:1fr;gap:10px;margin:1.4rem 0 .6rem}
+.gal:has(figure + figure){grid-template-columns:1fr 1fr}
+.gal:not(:has(figure + figure)) img{aspect-ratio:16/10}
 .gal figure{margin:0}
 .gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
 .gal figcaption{padding:4px 2px 0}
