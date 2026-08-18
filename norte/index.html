@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Finis Terrae — Северная Испания, 18–22.08.2026</title>
 <meta name="description" content="Путеводитель по автотрипу: Сантьяго — Коста-да-Морте — А-Корунья — Катедралес — Овьедо — Леон">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
@@ -11,15 +12,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F2F4F3; --card:#FFFFFF; --ink:№ 1C2321; --muted:№ 66716D;
-  --sea:№ 0B5D66; --sea-soft:№ 0b5d661a; --cider:#B96F1E; --cider-soft:#b96f1e14;
+  --paper:#F2F4F3; --card:#FFFFFF; --ink:#151B19; --muted:#47524D;
+  --sea:#07484F; --sea-soft:#0b5d661a; --cider:#8F5410; --cider-border:#B96F1E; --cider-soft:#b96f1e14;
   --line:#D8DEDC; --dash:#B9C2BF;
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --paper:№ 14181A; --card:№ 1C2224; --ink:#E8ECEA; --muted:№ 93A09B;
-    --sea:№ 5BBAC2; --sea-soft:№ 5bbac21f; --cider:#E09A4C; --cider-soft:#e09a4c1f;
-    --line:№ 2B3336; --dash:№ 3C4649;
+    --paper:#14181A; --card:#1C2224; --ink:#EDF1EF; --muted:#A9B5AF;
+    --sea:#6CC5CC; --sea-soft:#5bbac21f; --cider:#E7A863; --cider-border:#E09A4C; --cider-soft:#e09a4c1f;
+    --line:#2B3336; --dash:#3C4649;
   }
 }
 *{box-sizing:border-box;margin:0}
@@ -38,7 +39,7 @@ h3{font-size:1.9rem;margin:0 0 .35rem}
 /* ---------- cover ---------- */
 .cover{position:relative;min-height:92svh;display:flex;align-items:flex-end;color:#F4F6F5;overflow:hidden}
 .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,№ 0006 0%,№ 0000 35%,№ 000a 78%,№ 000c 100%)}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0006 0%,#0000 35%,#000a 78%,#000c 100%)}
 .cover .wrap{position:relative;z-index:2;padding-bottom:3.2rem;width:100%}
 .kicker{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
 .cover h1{font-size:clamp(3rem,11vw,5.6rem);margin:.4rem 0 .7rem;text-transform:uppercase}
@@ -48,12 +49,13 @@ h3{font-size:1.9rem;margin:0 0 .35rem}
 .cover figcaption a{color:inherit}
 
 /* ---------- sticky day nav ---------- */
-nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line)}
+@supports (background: color-mix(in srgb, red 50%, blue)){nav{background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px)}}
 nav .in{display:flex;gap:4px;overflow-x:auto;padding:9px 14px;scrollbar-width:none;max-width:920px;margin:0 auto}
 nav .in::-webkit-scrollbar{display:none}
 nav a{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.04em;text-decoration:none;color:var(--muted);padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 nav a b{color:var(--ink);font-weight:500}
-nav a.book{border-color:var(--cider);color:var(--cider)}
+nav a.book{border-color:var(--cider-border);color:var(--cider)}
 
 /* ---------- day header: km-post ---------- */
 .day{padding:4.4rem 0 1.6rem}
@@ -68,7 +70,7 @@ nav a.book{border-color:var(--cider);color:var(--cider)}
 section.loc{padding:2.6rem 0 1rem}
 figure.full{margin:0 0 1.5rem}
 figure.full img{width:100%;max-height:62svh;object-fit:cover;border-radius:2px}
-figcaption{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);padding:6px 20px 0;max-width:920px;margin:0 auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);padding:6px 20px 0;max-width:920px;margin:0 auto}
 figcaption a{color:var(--muted)}
 .lede{font-size:1.06rem;margin:.2rem 0 1rem;color:var(--muted)}
 .loc p{margin:0 0 1rem}
@@ -77,7 +79,7 @@ ul.see{list-style:none;padding:0;margin:0 0 1.2rem}
 ul.see li{padding:.42rem 0 .42rem 1.35rem;position:relative;border-bottom:1px solid var(--line)}
 ul.see li::before{content:"›";position:absolute;left:.15rem;color:var(--sea);font-weight:600}
 ul.see b{font-weight:600}
-.prac{background:var(--cider-soft);border-left:3px solid var(--cider);border-radius:0 4px 4px 0;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
+.prac{background:var(--cider-soft);border-left:3px solid var(--cider-border);border-radius:0 4px 4px 0;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
 .prac .t{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cider);margin-bottom:.4rem}
 .prac ul{list-style:none;padding:0}
 .prac li{padding:.18rem 0}
@@ -94,7 +96,7 @@ ul.see b{font-weight:600}
 .tide .t{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);margin-bottom:.7rem}
 .tidebar{position:relative;height:34px;background:linear-gradient(90deg,var(--sea-soft),transparent 18%,transparent 82%,var(--sea-soft));border-radius:4px;border:1px solid var(--line)}
 .tidebar .win{position:absolute;top:0;bottom:0;left:32%;right:22%;background:var(--sea-soft);border-left:2px solid var(--sea);border-right:2px solid var(--sea)}
-.tidebar .low{position:absolute;top:-7px;bottom:-7px;left:55%;width:2px;background:var(--cider)}
+.tidebar .low{position:absolute;top:-7px;bottom:-7px;left:55%;width:2px;background:var(--cider-border)}
 .tidescale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:.45rem}
 .tide .cap{font-size:.83rem;color:var(--muted);margin-top:.6rem}
 
@@ -113,7 +115,7 @@ ul.see b{font-weight:600}
 .alt h5{font-family:"Forum",Georgia,serif;font-weight:400;font-size:1.25rem;line-height:1.2;margin:0 0 .35rem}
 .alt h5 a{color:var(--ink);text-decoration:none}
 .alt p{font-size:.88rem;margin:0 0 .55rem}
-.alt .meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+.alt .meta{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted)}
 .alt .meta b{color:var(--cider);font-weight:500}
 
 /* ---------- final / footer ---------- */
@@ -126,7 +128,7 @@ ul.see b{font-weight:600}
 .small li{padding:.15rem 0}
 footer{padding:2rem 20px 3rem;text-align:center;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
 a.lb img{cursor:zoom-in}
-#lbox{position:fixed;inset:0;background:№ 000d;display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out}
+#lbox{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out}
 #lbox.on{display:flex}
 #lbox img{max-width:94vw;max-height:94vh;object-fit:contain}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
