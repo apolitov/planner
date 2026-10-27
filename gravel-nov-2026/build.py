@@ -8,6 +8,37 @@ import html, json, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PHOTOS = json.load(open(os.path.join(HERE, "photos.json"), encoding="utf-8"))
+TRACKS = json.load(open(os.path.join(HERE, "tracks-merged.json"), encoding="utf-8"))
+TRACKCOL = {"d": "#1F5A3C", "e": "#2F5D9E", "c": "#B96F1E"}
+
+
+def komoot_plan(wps):
+    la, lo = wps.split("|")[0].split(",")
+    q = "&".join("p[%d][loc]=%s" % (j, p) for j, p in enumerate(wps.split("|")))
+    return f"https://www.komoot.com/plan/@{la},{lo},9.407z?sport=touringbicycle&{q}"
+
+
+def tracks_block(rid):
+    """Карта с одним треком на маршрут, GPX и план Komoot; для C ещё длинный вариант второго дня."""
+    x = TRACKS.get(rid)
+    if not x:
+        return ""
+    col = TRACKCOL.get(rid, "#1F5A3C")
+    kmup = t("%s км / %d м" % (str(x["km"]).replace(".", ","), x["up"]))
+    items = [f'<li><span class="sw" style="background:{col}"></span><b>Весь маршрут</b> · {t(x["name"])} · <span class="mono">{kmup}</span> · '
+             f'<a href="gpx/{rid}.gpx" download>GPX</a> · <a href="{html.escape(komoot_plan(x["wps"]))}">план в Komoot</a></li>']
+    alt = TRACKS.get(rid + "-long")
+    files = [rid]
+    if alt:
+        kmup2 = t("%s км / %d м" % (str(alt["km"]).replace(".", ","), alt["up"]))
+        items.append(f'<li><span class="sw" style="background:{col};opacity:.45"></span><b>Вариант</b> · {t(alt["name"])} · <span class="mono">{kmup2}</span> · '
+                     f'<a href="gpx/{rid}-long.gpx" download>GPX</a> · <a href="{html.escape(komoot_plan(alt["wps"]))}">план в Komoot</a></li>')
+        files.append(rid + "-long")
+    return (f'<h4>Трек</h4><div class="map" id="map-{rid}" data-files=\'{json.dumps(files)}\' data-col="{col}"></div>'
+            f'<ul class="legend">{"".join(items)}</ul>'
+            f'<p class="small">{t("Проложено планировщиком Komoot в режиме велотуризма: велодорожки, тихие дороги и ровный грунт, без троп. Якорные точки стоят на известных участках (просека Лейрии, дамба Мондегу, экопишта, дюнная дорога Миры). Подложка CyclOSM показывает велодорожки и покрытие. Набор по планировщику, ±20 %.")}</p>')
+
+
 
 NB = " "   # неразрывный пробел
 TH = " "   # тонкий (разряды)
@@ -569,6 +600,12 @@ ul.see b{font-weight:600}
 .prac .t{color:var(--cider)} .sand .t{color:var(--sand)}
 .prac ul,.sand ul{list-style:none;padding:0}
 .prac li,.sand li{padding:.22rem 0}
+.map{height:440px;border:1px solid var(--line);border-radius:6px;margin:.4rem 0 .8rem;background:var(--card)}
+@media(max-width:560px){.map{height:360px}}
+ul.legend{list-style:none;padding:0;margin:0 0 .6rem;font-size:.88rem}
+ul.legend li{padding:.3rem 0;border-bottom:1px solid var(--line)}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:.5rem}
+.leaflet-container{font:inherit}
 ul.links{list-style:none;padding:0;margin:0 0 1.2rem;font-size:.9rem}
 ul.links li{padding:.3rem 0;border-bottom:1px solid var(--line)}
 .gal{display:grid;grid-template-columns:1fr;gap:10px;margin:1.4rem 0 .6rem}
@@ -625,6 +662,7 @@ def render_route(r):
   <h4>Что смотреть</h4>
   {ul('see', r['see'])}
   {prac('Логистика', r['prac'])}
+  {tracks_block(r['id'])}
   <h4>Нитки и GPX</h4>
   {links(r['tracks'])}
   {photos}
@@ -666,6 +704,7 @@ def render():
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>{CSS}</style>
 </head>
 <body>
@@ -710,6 +749,27 @@ def render():
 
 <footer>гравел · ноябрь 2026 · собрано из открытых источников</footer>
 <div id="lbox"><img alt=""></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="tracks.js"></script>
+<script>
+(function(){{
+  if(!window.L||!window.TRACKS)return;
+  document.querySelectorAll('.map').forEach(el=>{{
+    const files=JSON.parse(el.dataset.files), col=el.dataset.col;
+    const m=L.map(el,{{scrollWheelZoom:false}});
+    L.tileLayer('https://{{s}}.tile-cyclosm.openstreetmap.fr/cyclosm/{{z}}/{{x}}/{{y}}.png',{{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://www.cyclosm.org">CyclOSM</a>'}}).addTo(m);
+    const all=[];
+    files.forEach((f,i)=>{{
+      const pts=window.TRACKS[f]; if(!pts)return;
+      L.polyline(pts,{{color:col,weight:i?3:4,opacity:i?.45:.95,dashArray:i?'6 6':null}}).addTo(m);
+      if(!i){{L.circleMarker(pts[0],{{radius:6,color:'#fff',fillColor:col,fillOpacity:1,weight:2}}).addTo(m);
+      L.circleMarker(pts[pts.length-1],{{radius:6,color:'#fff',fillColor:col,fillOpacity:1,weight:2}}).addTo(m);}}
+      all.push(...pts);
+    }});
+    if(all.length)m.fitBounds(L.latLngBounds(all),{{padding:[20,20]}});
+  }});
+}})();
+</script>
 <script>
 const lbox=document.getElementById('lbox');
 document.addEventListener('click',e=>{{
